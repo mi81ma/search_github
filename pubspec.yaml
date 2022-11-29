@@ -1,0 +1,74 @@
+name: search_github
+description: Search GitHub repositories App
+publish_to: 'none' 
+version: 1.0.0+1
+
+
+environment:
+  sdk: '>=2.18.5 <3.0.0'
+
+
+dependencies:
+  flutter:
+    sdk: flutter
+  
+  # riverpod
+  flutter_riverpod: ^2.1.1
+
+  # routemaster for routing
+  routemaster: ^1.0.1
+
+  # auto size text
+  auto_size_text: ^3.0.0
+
+  # responsive design
+  flutter_screenutil: ^5.6.0
+
+  # JSON
+  json_serializable: ^6.5.4
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+  # freezed
+  freezed: ^2.2.1
+  build_runner:
+  freezed_annotation:
+
+
+flutter:
+  uses-material-design: true
+
+  
+  
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
