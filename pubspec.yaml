@@ -26,6 +26,9 @@ dependencies:
 
   # JSON
   json_serializable: ^6.5.4
+  
+  # Multisize Simulator
+  device_preview: ^1.1.0
 
 
 dev_dependencies:
