@@ -1,10 +1,11 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:search_github/first_screen.dart';
 
 void main() {
-  return runApp(
-      DevicePreview(enabled: !kReleaseMode, builder: ((context) => MyApp())));
+  return runApp(DevicePreview(
+      enabled: !kReleaseMode, builder: ((context) => const MyApp())));
 }
 
 class MyApp extends StatelessWidget {
@@ -19,10 +20,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData.light(),
       darkTheme: ThemeData.dark(),
       title: 'Flutter Demo',
-      // theme: ThemeData(
-      //   primarySwatch: Colors.blue,
-      // ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const HomeTab(),
     );
   }
 }
