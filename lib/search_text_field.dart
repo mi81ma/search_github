@@ -1,33 +1,46 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 
 class SearchTextField extends StatefulWidget {
-  const SearchTextField(
-      {Key? key,
-      this.onFocusChange,
-      this.focus,
-      this.onCancel,
-      this.inputDecoration})
-      : super(key: key);
+  const SearchTextField({
+    Key? key,
+    this.onFocusChange,
+    this.focusNode,
+    this.onCancel,
+    this.inputDecoration,
+    // this.isAutoFocus,
+  }) : super(key: key);
 
   final void Function(bool hasFocus)? onFocusChange;
-  final FocusNode? focus;
+  final FocusNode? focusNode;
   final VoidCallback? onCancel;
   final InputDecoration? inputDecoration;
+  // final bool? isAutoFocus;
 
   @override
-  _SearchTextFieldState createState() => _SearchTextFieldState();
+  SearchTextFieldState createState() => SearchTextFieldState();
 }
 
-class _SearchTextFieldState extends State<SearchTextField> {
-  FocusNode _focus = new FocusNode();
+class SearchTextFieldState extends State<SearchTextField> {
+  FocusNode _focusNode = FocusNode();
+  // bool _isAutoFocus = false;
 
   @override
   void initState() {
     super.initState();
-    _focus = widget.focus ?? new FocusNode();
-    _focus.addListener(() {
+    // _isAutoFocus = widget.isAutoFocus ?? false;
+    _focusNode = widget.focusNode ?? FocusNode();
+    _focusNode.addListener(() {
       if (widget.onFocusChange != null) {
-        widget.onFocusChange!(_focus.hasFocus);
+        widget.onFocusChange!(_focusNode.hasFocus);
+      }
+    });
+    _focusNode.addListener(() {
+      if (_focusNode.hasFocus) {
+        log('Focused on text field');
+      } else {
+        log('Out of focus from text field');
       }
     });
   }
@@ -42,11 +55,12 @@ class _SearchTextFieldState extends State<SearchTextField> {
           children: [
             Expanded(
                 child: TextField(
-                    style: const TextStyle(color: Colors.red),
-                    focusNode: _focus,
+                    key: const Key('secondTextField'),
+                    // autofocus: _isAutoFocus,
+                    style: const TextStyle(color: Colors.black),
+                    focusNode: _focusNode,
                     decoration: InputDecoration(
                         prefixIcon: const Icon(Icons.search),
-                        // suffixIcon: Text("Cancel"),
                         filled: true,
                         fillColor: Colors.white,
                         border: OutlineInputBorder(
@@ -55,6 +69,7 @@ class _SearchTextFieldState extends State<SearchTextField> {
                                 color: Colors.blue, width: 1))))),
             if (widget.onCancel != null)
               GestureDetector(
+                key: const Key('cancelFocus'),
                 onTap: widget.onCancel,
                 child: const Padding(
                   padding: EdgeInsets.all(8.0),
