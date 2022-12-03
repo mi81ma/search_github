@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData.light(),
       darkTheme: ThemeData.dark(),
       title: 'Flutter Demo',
-      home: const HomeTab(),
+      home: const FirstScreen(),
     );
   }
 }

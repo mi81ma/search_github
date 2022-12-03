@@ -9,14 +9,14 @@ class SearchTextField extends StatefulWidget {
     this.focusNode,
     this.onCancel,
     this.inputDecoration,
-    // this.isAutoFocus,
+    this.isAutoFocus,
   }) : super(key: key);
 
   final void Function(bool hasFocus)? onFocusChange;
   final FocusNode? focusNode;
   final VoidCallback? onCancel;
   final InputDecoration? inputDecoration;
-  // final bool? isAutoFocus;
+  final bool? isAutoFocus;
 
   @override
   SearchTextFieldState createState() => SearchTextFieldState();
@@ -24,12 +24,12 @@ class SearchTextField extends StatefulWidget {
 
 class SearchTextFieldState extends State<SearchTextField> {
   FocusNode _focusNode = FocusNode();
-  // bool _isAutoFocus = false;
+  bool _isAutoFocus = false;
 
   @override
   void initState() {
     super.initState();
-    // _isAutoFocus = widget.isAutoFocus ?? false;
+    _isAutoFocus = widget.isAutoFocus ?? false;
     _focusNode = widget.focusNode ?? FocusNode();
     _focusNode.addListener(() {
       if (widget.onFocusChange != null) {
@@ -55,12 +55,17 @@ class SearchTextFieldState extends State<SearchTextField> {
           children: [
             Expanded(
                 child: TextField(
+                    autofocus: _isAutoFocus,
+                    textInputAction: TextInputAction.search,
                     key: const Key('secondTextField'),
-                    // autofocus: _isAutoFocus,
                     style: const TextStyle(color: Colors.black),
                     focusNode: _focusNode,
                     decoration: InputDecoration(
-                        prefixIcon: const Icon(Icons.search),
+                        hintText: "Search",
+                        prefixIcon: const Icon(
+                          Icons.search,
+                          color: Colors.black38,
+                        ),
                         filled: true,
                         fillColor: Colors.white,
                         border: OutlineInputBorder(

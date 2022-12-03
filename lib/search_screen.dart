@@ -27,6 +27,7 @@ class _SearchScreenState extends State<SearchScreen> {
           child: Column(
             children: [
               SearchTextField(
+                isAutoFocus: true,
                 onCancel: () {
                   FocusScope.of(context).unfocus();
                   Navigator.pop(context);
