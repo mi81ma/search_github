@@ -29,6 +29,13 @@ dependencies:
   
   # Multisize Simulator
   device_preview: ^1.1.0
+  
+  # http
+  http: ^0.13.5
+
+  # for resposible design
+  responsive_framework: ^0.2.0
+  sizer: ^2.0.15
 
 
 dev_dependencies:
