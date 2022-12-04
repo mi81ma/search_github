@@ -1,0 +1,4 @@
+arb-dir: lib/l10n
+template-arb-file: app_en.arb # Default language
+output-class: L10n # class name
+output-localization-file: l10n.dart # import faile name

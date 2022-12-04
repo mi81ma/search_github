@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:search_github/first_screen.dart';
 import 'package:responsive_framework/responsive_framework.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 void main() {
   return runApp(DevicePreview(
@@ -32,6 +33,18 @@ class MyApp extends StatelessWidget {
       theme: ThemeData.light(),
       darkTheme: ThemeData.dark(),
       title: 'Flutter Demo',
+      // localizationsDelegates: const [
+      //   AppLocalizations.delegate,
+      //   GlobalMaterialLocalizations.delegate,
+      //   GlobalWidgetsLocalizations.delegate,
+      //   GlobalCupertinoLocalizations.delegate,
+      // ],
+      // supportedLocales: const [
+      //   Locale('en'),
+      //   Locale('ja', ''),
+      // ],
+      localizationsDelegates: L10n.localizationsDelegates, // これ！
+      supportedLocales: L10n.supportedLocales, // これ！
       home: const FirstScreen(),
     );
   }
