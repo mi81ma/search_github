@@ -22,21 +22,35 @@ Owner _$OwnerFromJson(Map<String, dynamic> json) {
 mixin _$Owner {
   String? get login => throw _privateConstructorUsedError;
   int? get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'node_id')
   String? get nodeId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'avatar_url')
   String? get avatarUrl => throw _privateConstructorUsedError;
+  @JsonKey(name: 'gravatar_id')
   String? get gravatarId => throw _privateConstructorUsedError;
   String? get url => throw _privateConstructorUsedError;
+  @JsonKey(name: 'html_url')
   String? get htmlUrl => throw _privateConstructorUsedError;
+  @JsonKey(name: 'followers_url')
   String? get followersUrl => throw _privateConstructorUsedError;
+  @JsonKey(name: 'following_url')
   String? get followingUrl => throw _privateConstructorUsedError;
+  @JsonKey(name: 'gists_url')
   String? get gistsUrl => throw _privateConstructorUsedError;
+  @JsonKey(name: 'starred_url')
   String? get starredUrl => throw _privateConstructorUsedError;
+  @JsonKey(name: 'subscriptions_url')
   String? get subscriptionsUrl => throw _privateConstructorUsedError;
+  @JsonKey(name: 'organizations_url')
   String? get organizationsUrl => throw _privateConstructorUsedError;
+  @JsonKey(name: 'repos_url')
   String? get reposUrl => throw _privateConstructorUsedError;
+  @JsonKey(name: 'events_url')
   String? get eventsUrl => throw _privateConstructorUsedError;
+  @JsonKey(name: 'received_events_url')
   String? get receivedEventsUrl => throw _privateConstructorUsedError;
   String? get type => throw _privateConstructorUsedError;
+  @JsonKey(name: 'site_admin')
   bool? get siteAdmin => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -52,22 +66,22 @@ abstract class $OwnerCopyWith<$Res> {
   $Res call(
       {String? login,
       int? id,
-      String? nodeId,
-      String? avatarUrl,
-      String? gravatarId,
+      @JsonKey(name: 'node_id') String? nodeId,
+      @JsonKey(name: 'avatar_url') String? avatarUrl,
+      @JsonKey(name: 'gravatar_id') String? gravatarId,
       String? url,
-      String? htmlUrl,
-      String? followersUrl,
-      String? followingUrl,
-      String? gistsUrl,
-      String? starredUrl,
-      String? subscriptionsUrl,
-      String? organizationsUrl,
-      String? reposUrl,
-      String? eventsUrl,
-      String? receivedEventsUrl,
+      @JsonKey(name: 'html_url') String? htmlUrl,
+      @JsonKey(name: 'followers_url') String? followersUrl,
+      @JsonKey(name: 'following_url') String? followingUrl,
+      @JsonKey(name: 'gists_url') String? gistsUrl,
+      @JsonKey(name: 'starred_url') String? starredUrl,
+      @JsonKey(name: 'subscriptions_url') String? subscriptionsUrl,
+      @JsonKey(name: 'organizations_url') String? organizationsUrl,
+      @JsonKey(name: 'repos_url') String? reposUrl,
+      @JsonKey(name: 'events_url') String? eventsUrl,
+      @JsonKey(name: 'received_events_url') String? receivedEventsUrl,
       String? type,
-      bool? siteAdmin});
+      @JsonKey(name: 'site_admin') bool? siteAdmin});
 }
 
 /// @nodoc
@@ -188,22 +202,22 @@ abstract class _$$_OwnerCopyWith<$Res> implements $OwnerCopyWith<$Res> {
   $Res call(
       {String? login,
       int? id,
-      String? nodeId,
-      String? avatarUrl,
-      String? gravatarId,
+      @JsonKey(name: 'node_id') String? nodeId,
+      @JsonKey(name: 'avatar_url') String? avatarUrl,
+      @JsonKey(name: 'gravatar_id') String? gravatarId,
       String? url,
-      String? htmlUrl,
-      String? followersUrl,
-      String? followingUrl,
-      String? gistsUrl,
-      String? starredUrl,
-      String? subscriptionsUrl,
-      String? organizationsUrl,
-      String? reposUrl,
-      String? eventsUrl,
-      String? receivedEventsUrl,
+      @JsonKey(name: 'html_url') String? htmlUrl,
+      @JsonKey(name: 'followers_url') String? followersUrl,
+      @JsonKey(name: 'following_url') String? followingUrl,
+      @JsonKey(name: 'gists_url') String? gistsUrl,
+      @JsonKey(name: 'starred_url') String? starredUrl,
+      @JsonKey(name: 'subscriptions_url') String? subscriptionsUrl,
+      @JsonKey(name: 'organizations_url') String? organizationsUrl,
+      @JsonKey(name: 'repos_url') String? reposUrl,
+      @JsonKey(name: 'events_url') String? eventsUrl,
+      @JsonKey(name: 'received_events_url') String? receivedEventsUrl,
       String? type,
-      bool? siteAdmin});
+      @JsonKey(name: 'site_admin') bool? siteAdmin});
 }
 
 /// @nodoc
@@ -317,22 +331,22 @@ class _$_Owner implements _Owner {
   const _$_Owner(
       {this.login,
       this.id,
-      this.nodeId,
-      this.avatarUrl,
-      this.gravatarId,
+      @JsonKey(name: 'node_id') this.nodeId,
+      @JsonKey(name: 'avatar_url') this.avatarUrl,
+      @JsonKey(name: 'gravatar_id') this.gravatarId,
       this.url,
-      this.htmlUrl,
-      this.followersUrl,
-      this.followingUrl,
-      this.gistsUrl,
-      this.starredUrl,
-      this.subscriptionsUrl,
-      this.organizationsUrl,
-      this.reposUrl,
-      this.eventsUrl,
-      this.receivedEventsUrl,
+      @JsonKey(name: 'html_url') this.htmlUrl,
+      @JsonKey(name: 'followers_url') this.followersUrl,
+      @JsonKey(name: 'following_url') this.followingUrl,
+      @JsonKey(name: 'gists_url') this.gistsUrl,
+      @JsonKey(name: 'starred_url') this.starredUrl,
+      @JsonKey(name: 'subscriptions_url') this.subscriptionsUrl,
+      @JsonKey(name: 'organizations_url') this.organizationsUrl,
+      @JsonKey(name: 'repos_url') this.reposUrl,
+      @JsonKey(name: 'events_url') this.eventsUrl,
+      @JsonKey(name: 'received_events_url') this.receivedEventsUrl,
       this.type,
-      this.siteAdmin});
+      @JsonKey(name: 'site_admin') this.siteAdmin});
 
   factory _$_Owner.fromJson(Map<String, dynamic> json) =>
       _$$_OwnerFromJson(json);
@@ -342,36 +356,50 @@ class _$_Owner implements _Owner {
   @override
   final int? id;
   @override
+  @JsonKey(name: 'node_id')
   final String? nodeId;
   @override
+  @JsonKey(name: 'avatar_url')
   final String? avatarUrl;
   @override
+  @JsonKey(name: 'gravatar_id')
   final String? gravatarId;
   @override
   final String? url;
   @override
+  @JsonKey(name: 'html_url')
   final String? htmlUrl;
   @override
+  @JsonKey(name: 'followers_url')
   final String? followersUrl;
   @override
+  @JsonKey(name: 'following_url')
   final String? followingUrl;
   @override
+  @JsonKey(name: 'gists_url')
   final String? gistsUrl;
   @override
+  @JsonKey(name: 'starred_url')
   final String? starredUrl;
   @override
+  @JsonKey(name: 'subscriptions_url')
   final String? subscriptionsUrl;
   @override
+  @JsonKey(name: 'organizations_url')
   final String? organizationsUrl;
   @override
+  @JsonKey(name: 'repos_url')
   final String? reposUrl;
   @override
+  @JsonKey(name: 'events_url')
   final String? eventsUrl;
   @override
+  @JsonKey(name: 'received_events_url')
   final String? receivedEventsUrl;
   @override
   final String? type;
   @override
+  @JsonKey(name: 'site_admin')
   final bool? siteAdmin;
 
   @override
@@ -457,22 +485,22 @@ abstract class _Owner implements Owner {
   const factory _Owner(
       {final String? login,
       final int? id,
-      final String? nodeId,
-      final String? avatarUrl,
-      final String? gravatarId,
+      @JsonKey(name: 'node_id') final String? nodeId,
+      @JsonKey(name: 'avatar_url') final String? avatarUrl,
+      @JsonKey(name: 'gravatar_id') final String? gravatarId,
       final String? url,
-      final String? htmlUrl,
-      final String? followersUrl,
-      final String? followingUrl,
-      final String? gistsUrl,
-      final String? starredUrl,
-      final String? subscriptionsUrl,
-      final String? organizationsUrl,
-      final String? reposUrl,
-      final String? eventsUrl,
-      final String? receivedEventsUrl,
+      @JsonKey(name: 'html_url') final String? htmlUrl,
+      @JsonKey(name: 'followers_url') final String? followersUrl,
+      @JsonKey(name: 'following_url') final String? followingUrl,
+      @JsonKey(name: 'gists_url') final String? gistsUrl,
+      @JsonKey(name: 'starred_url') final String? starredUrl,
+      @JsonKey(name: 'subscriptions_url') final String? subscriptionsUrl,
+      @JsonKey(name: 'organizations_url') final String? organizationsUrl,
+      @JsonKey(name: 'repos_url') final String? reposUrl,
+      @JsonKey(name: 'events_url') final String? eventsUrl,
+      @JsonKey(name: 'received_events_url') final String? receivedEventsUrl,
       final String? type,
-      final bool? siteAdmin}) = _$_Owner;
+      @JsonKey(name: 'site_admin') final bool? siteAdmin}) = _$_Owner;
 
   factory _Owner.fromJson(Map<String, dynamic> json) = _$_Owner.fromJson;
 
@@ -481,36 +509,50 @@ abstract class _Owner implements Owner {
   @override
   int? get id;
   @override
+  @JsonKey(name: 'node_id')
   String? get nodeId;
   @override
+  @JsonKey(name: 'avatar_url')
   String? get avatarUrl;
   @override
+  @JsonKey(name: 'gravatar_id')
   String? get gravatarId;
   @override
   String? get url;
   @override
+  @JsonKey(name: 'html_url')
   String? get htmlUrl;
   @override
+  @JsonKey(name: 'followers_url')
   String? get followersUrl;
   @override
+  @JsonKey(name: 'following_url')
   String? get followingUrl;
   @override
+  @JsonKey(name: 'gists_url')
   String? get gistsUrl;
   @override
+  @JsonKey(name: 'starred_url')
   String? get starredUrl;
   @override
+  @JsonKey(name: 'subscriptions_url')
   String? get subscriptionsUrl;
   @override
+  @JsonKey(name: 'organizations_url')
   String? get organizationsUrl;
   @override
+  @JsonKey(name: 'repos_url')
   String? get reposUrl;
   @override
+  @JsonKey(name: 'events_url')
   String? get eventsUrl;
   @override
+  @JsonKey(name: 'received_events_url')
   String? get receivedEventsUrl;
   @override
   String? get type;
   @override
+  @JsonKey(name: 'site_admin')
   bool? get siteAdmin;
   @override
   @JsonKey(ignore: true)

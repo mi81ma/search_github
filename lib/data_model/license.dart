@@ -14,6 +14,6 @@ abstract class License with _$License {
     String? nodeId,
   }) = _License;
 
-  factory License.fromJson(Map<String, String?> json) =>
+  factory License.fromJson(Map<String, dynamic> json) =>
       _$LicenseFromJson(json);
 }
