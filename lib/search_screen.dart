@@ -1,14 +1,19 @@
-import 'package:flutter/material.dart';
-import 'package:search_github/search_text_field.dart';
+import 'dart:developer';
 
-class SearchScreen extends StatefulWidget {
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:search_github/main.dart';
+import 'package:search_github/search_text_field.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+
+class SearchScreen extends ConsumerStatefulWidget {
   const SearchScreen({Key? key}) : super(key: key);
 
   @override
-  _SearchScreenState createState() => _SearchScreenState();
+  ConsumerState<SearchScreen> createState() => _SearchScreenState();
 }
 
-class _SearchScreenState extends State<SearchScreen> {
+class _SearchScreenState extends ConsumerState<SearchScreen> {
   final _focusNode = FocusNode();
 
   @override
@@ -23,7 +28,6 @@ class _SearchScreenState extends State<SearchScreen> {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 32),
-          // padding: const EdgeInsets.all(8.0),
           child: Column(
             children: [
               SearchTextField(

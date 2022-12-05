@@ -1,6 +1,7 @@
 {
   "@@locale": "ja",
   "test": "テスト",
+  "title": "GitHub 検索",
   "search": "検索",
   "cancel": "キャンセル"
 }

@@ -1,8 +1,11 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:search_github/main.dart';
 
-class SearchTextField extends StatefulWidget {
+class SearchTextField extends ConsumerStatefulWidget {
   const SearchTextField({
     Key? key,
     this.onFocusChange,
@@ -19,10 +22,10 @@ class SearchTextField extends StatefulWidget {
   final bool? isAutoFocus;
 
   @override
-  SearchTextFieldState createState() => SearchTextFieldState();
+  ConsumerState<SearchTextField> createState() => _SearchTextFieldState();
 }
 
-class SearchTextFieldState extends State<SearchTextField> {
+class _SearchTextFieldState extends ConsumerState<SearchTextField> {
   FocusNode _focusNode = FocusNode();
   bool _isAutoFocus = false;
 
@@ -61,7 +64,9 @@ class SearchTextFieldState extends State<SearchTextField> {
                     style: const TextStyle(color: Colors.black),
                     focusNode: _focusNode,
                     decoration: InputDecoration(
-                        hintText: "Search",
+                        hintText: L10n.of(context) != null
+                            ? L10n.of(context)!.search
+                            : "Search Github",
                         prefixIcon: const Icon(
                           Icons.search,
                           color: Colors.black38,
@@ -76,9 +81,13 @@ class SearchTextFieldState extends State<SearchTextField> {
               GestureDetector(
                 key: const Key('cancelFocus'),
                 onTap: widget.onCancel,
-                child: const Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Text("Cancel"),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    L10n.of(context) != null
+                        ? L10n.of(context)!.cancel
+                        : "Cancel",
+                  ),
                 ),
               )
           ],

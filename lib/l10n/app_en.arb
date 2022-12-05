@@ -1,6 +1,7 @@
 {
   "@@locale": "en",
   "test": "test",
+  "title": "Search GitHub",
   "search": "Search",
   "cancel": "Cancel"
 }
