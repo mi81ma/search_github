@@ -50,49 +50,49 @@ class _SearchTextFieldState extends ConsumerState<SearchTextField> {
 
   @override
   Widget build(BuildContext context) {
-    return Hero(
-      tag: "search",
-      child: Material(
-        type: MaterialType.transparency,
-        child: Row(
-          children: [
-            Expanded(
-                child: TextField(
-                    autofocus: _isAutoFocus,
-                    textInputAction: TextInputAction.search,
-                    key: const Key('secondTextField'),
-                    style: const TextStyle(color: Colors.black),
-                    focusNode: _focusNode,
-                    decoration: InputDecoration(
-                        hintText: L10n.of(context) != null
-                            ? L10n.of(context)!.search
-                            : "Search Github",
-                        prefixIcon: const Icon(
-                          Icons.search,
-                          color: Colors.black38,
-                        ),
-                        filled: true,
-                        fillColor: Colors.white,
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(8),
-                            borderSide: const BorderSide(
-                                color: Colors.blue, width: 1))))),
-            if (widget.onCancel != null)
-              GestureDetector(
-                key: const Key('cancelFocus'),
-                onTap: widget.onCancel,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    L10n.of(context) != null
-                        ? L10n.of(context)!.cancel
-                        : "Cancel",
-                  ),
-                ),
-              )
-          ],
-        ),
-      ),
+    return
+        // Hero(
+        //   tag: "search",
+        //   child: Material(
+        //     type: MaterialType.transparency,
+        //     child:
+        Row(
+      children: [
+        Expanded(
+            child: TextField(
+                autofocus: _isAutoFocus,
+                textInputAction: TextInputAction.search,
+                key: const Key('secondTextField'),
+                style: const TextStyle(color: Colors.black),
+                focusNode: _focusNode,
+                decoration: InputDecoration(
+                    hintText: L10n.of(context) != null
+                        ? L10n.of(context)!.search
+                        : "Search Github",
+                    prefixIcon: const Icon(
+                      Icons.search,
+                      color: Colors.black38,
+                    ),
+                    filled: true,
+                    fillColor: Colors.white,
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8),
+                        borderSide:
+                            const BorderSide(color: Colors.blue, width: 1))))),
+        if (widget.onCancel != null)
+          GestureDetector(
+            key: const Key('cancelFocus'),
+            onTap: widget.onCancel,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                L10n.of(context) != null ? L10n.of(context)!.cancel : "Cancel",
+              ),
+            ),
+          )
+      ],
     );
+    //   ),
+    // );
   }
 }
