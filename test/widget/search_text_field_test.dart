@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:search_github/main.dart';
-import 'package:search_github/search_screen.dart';
-import 'package:search_github/search_text_field.dart';
+import 'package:search_github/view/searching_page_view.dart';
+import 'package:search_github/componet/search_text_field.dart';
 
 void main() {
   testWidgets("SearchTextField", (WidgetTester tester) async {

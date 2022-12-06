@@ -7,7 +7,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:routemaster/routemaster.dart';
-import 'package:search_github/router.dart';
+import 'package:search_github/router/router.dart';
 
 void main() {
   return runApp(DevicePreview(

@@ -3,17 +3,17 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:search_github/main.dart';
-import 'package:search_github/search_text_field.dart';
+import 'package:search_github/componet/search_text_field.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
-class SearchScreen extends ConsumerStatefulWidget {
-  const SearchScreen({Key? key}) : super(key: key);
+class SearchingPageView extends ConsumerStatefulWidget {
+  const SearchingPageView({Key? key}) : super(key: key);
 
   @override
-  ConsumerState<SearchScreen> createState() => _SearchScreenState();
+  ConsumerState<SearchingPageView> createState() => _SearchingPageViewState();
 }
 
-class _SearchScreenState extends ConsumerState<SearchScreen> {
+class _SearchingPageViewState extends ConsumerState<SearchingPageView> {
   final _focusNode = FocusNode();
 
   @override

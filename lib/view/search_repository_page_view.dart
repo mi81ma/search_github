@@ -1,21 +1,26 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:search_github/search_screen.dart';
-import 'package:search_github/search_text_field.dart';
+import 'package:search_github/view/searching_page_view.dart';
+import 'package:search_github/componet/search_text_field.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:search_github/view_model/search_repository_page_view_model.dart';
 
-class FirstScreen extends ConsumerStatefulWidget {
-  const FirstScreen({Key? key}) : super(key: key);
+class SearchRepositoryPageView extends ConsumerStatefulWidget {
+  const SearchRepositoryPageView({Key? key}) : super(key: key);
 
   @override
-  ConsumerState<FirstScreen> createState() => _FirstScreenState();
+  ConsumerState<SearchRepositoryPageView> createState() =>
+      _SearchRepositoryPageViewState();
 }
 
-class _FirstScreenState extends ConsumerState<FirstScreen> {
+class _SearchRepositoryPageViewState
+    extends ConsumerState<SearchRepositoryPageView> {
+  final SearchRepositoryPageViewModel _vm = SearchRepositoryPageViewModel();
   @override
   void initState() {
     super.initState();
+    _vm.setRef(ref);
   }
 
   @override
@@ -37,7 +42,7 @@ class _FirstScreenState extends ConsumerState<FirstScreen> {
                               transitionDuration:
                                   const Duration(milliseconds: 500),
                               pageBuilder: (_, __, ___) =>
-                                  const SearchScreen()));
+                                  const SearchingPageView()));
                     }
                   },
                 )
