@@ -13,6 +13,7 @@ class SearchTextField extends ConsumerStatefulWidget {
     this.onFocusChange,
     this.focusNode,
     this.onCancel,
+    this.onEditingComplete,
     this.inputDecoration,
     this.isAutoFocus,
   }) : super(key: key);
@@ -20,6 +21,7 @@ class SearchTextField extends ConsumerStatefulWidget {
   final void Function(bool hasFocus)? onFocusChange;
   final FocusNode? focusNode;
   final VoidCallback? onCancel;
+  final VoidCallback? onEditingComplete;
   final InputDecoration? inputDecoration;
   final bool? isAutoFocus;
 
@@ -62,6 +64,8 @@ class _SearchTextFieldState extends ConsumerState<SearchTextField> {
       children: [
         Expanded(
             child: TextField(
+                keyboardType: TextInputType.text,
+                onEditingComplete: widget.onEditingComplete,
                 autofocus: _isAutoFocus,
                 textInputAction: TextInputAction.done,
                 key: const Key('secondTextField'),

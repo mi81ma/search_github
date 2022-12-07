@@ -57,12 +57,15 @@ class _SearchingPageViewState extends ConsumerState<SearchingPageView> {
           child: Column(
             children: [
               Focus(
-                // focusNode: _focusNode,
                 onKey: _handleKeyEvent,
                 child: AnimatedBuilder(
                   animation: _focusNode,
                   builder: (BuildContext context, Widget? child) {
                     return SearchTextField(
+                      onEditingComplete: () {
+                        print("onEditingComplete");
+                        FocusScope.of(context).unfocus();
+                      },
                       isAutoFocus: true,
                       onCancel: () {
                         FocusScope.of(context).unfocus();
