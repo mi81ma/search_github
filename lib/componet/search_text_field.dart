@@ -1,6 +1,8 @@
 import 'dart:developer';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:search_github/main.dart';
@@ -61,7 +63,7 @@ class _SearchTextFieldState extends ConsumerState<SearchTextField> {
         Expanded(
             child: TextField(
                 autofocus: _isAutoFocus,
-                textInputAction: TextInputAction.search,
+                textInputAction: TextInputAction.done,
                 key: const Key('secondTextField'),
                 style: const TextStyle(color: Colors.black),
                 focusNode: _focusNode,

@@ -10,11 +10,16 @@ import 'package:routemaster/routemaster.dart';
 import 'package:search_github/router/router.dart';
 
 void main() {
-  return runApp(DevicePreview(
-      enabled: !kReleaseMode,
-      builder: ((context) => const ProviderScope(
-            child: MyApp(),
-          ))));
+  runApp(
+    const ProviderScope(
+      child: MyApp(),
+    ),
+  );
+  // return runApp(DevicePreview(
+  //     enabled: !kReleaseMode,
+  //     builder: ((context) => const ProviderScope(
+  //           child: MyApp(),
+  //         ))));
 }
 
 class MyApp extends ConsumerWidget {

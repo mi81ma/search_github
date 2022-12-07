@@ -79,7 +79,7 @@ void main() {
 
     await tester.pumpWidget(
       const MaterialApp(
-        home: SearchScreen(),
+        home: SearchingPageView(),
       ),
     );
 

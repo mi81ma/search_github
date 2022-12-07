@@ -32,20 +32,37 @@ class _SearchRepositoryPageViewState
             padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 32),
             child: Column(
               children: [
-                SearchTextField(
-                  key: const Key("searchTextField"),
-                  onFocusChange: (val) {
-                    if (val) {
-                      Navigator.push(
-                          context,
-                          PageRouteBuilder(
-                              transitionDuration:
-                                  const Duration(milliseconds: 500),
-                              pageBuilder: (_, __, ___) =>
-                                  const SearchingPageView()));
-                    }
+                TextField(
+                  onTap: () async {
+                    Navigator.push(
+                      context,
+                      PageRouteBuilder(
+                        transitionDuration: const Duration(milliseconds: 500),
+                        pageBuilder: (_, __, ___) => const SearchingPageView(),
+                      ),
+                    );
                   },
-                )
+                  autofocus: false,
+                  textInputAction: TextInputAction.done,
+                  key: const Key('secondTextField'),
+                  style: const TextStyle(color: Colors.black),
+                  decoration: InputDecoration(
+                    hintText: L10n.of(context) != null
+                        ? L10n.of(context)!.search
+                        : "Search Github",
+                    prefixIcon: const Icon(
+                      Icons.search,
+                      color: Colors.black38,
+                    ),
+                    filled: true,
+                    fillColor: Colors.white,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8),
+                      borderSide:
+                          const BorderSide(color: Colors.blue, width: 1),
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
