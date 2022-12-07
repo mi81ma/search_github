@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:search_github/componet/search_result_list_item.dart';
 import 'package:search_github/componet/size_config.dart';
 import 'package:search_github/view/searching_page_view.dart';
 import 'package:search_github/componet/search_text_field.dart';
@@ -80,6 +81,8 @@ class _SearchRepositoryPageViewState
                 ),
               ),
             ),
+            //----- test --------
+            SearchResultListItem()
           ],
         ),
       ),
