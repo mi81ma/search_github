@@ -38,17 +38,16 @@ dependencies:
   http: ^0.13.5
 
   # for resposible design
-  responsive_framework: ^0.2.0
-  sizer: ^2.0.15
+  # responsive_framework: ^0.2.0
+  # sizer: ^2.0.15
 
   # for multilingual support
   l10n_flutter: ^1.0.6
   
-
   # for l10n
   intl: ^0.17.0
 
-
+    
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -65,6 +64,21 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   generate: true # for l10n
+  fonts:
+    - family: Roboto
+      fonts:
+        - asset: fonts/Roboto/Roboto-Thin.ttf
+          weight: 100
+        - asset: fonts/Roboto/Roboto-Light.ttf
+          weight: 300
+        - asset: fonts/Roboto/Roboto-Regular.ttf
+          weight: 400
+        - asset: fonts/Roboto/Roboto-Medium.ttf
+          weight: 500
+        - asset: fonts/Roboto/Roboto-Bold.ttf
+          weight: 700
+        - asset: fonts/Roboto/Roboto-Black.ttf
+          weight: 900
 
   
   
