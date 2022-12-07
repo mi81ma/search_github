@@ -72,12 +72,12 @@ class _SearchingPageViewState extends ConsumerState<SearchingPageView> {
                         Navigator.pop(context);
                       },
                       inputDecoration: InputDecoration(
+                          focusColor: null,
                           prefixIcon: const Icon(
                             Icons.search,
                             color: Colors.black,
                           ),
                           filled: true,
-                          fillColor: Colors.white,
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(8),
                               borderSide: const BorderSide(

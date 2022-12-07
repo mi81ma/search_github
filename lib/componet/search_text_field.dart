@@ -69,9 +69,16 @@ class _SearchTextFieldState extends ConsumerState<SearchTextField> {
                 autofocus: _isAutoFocus,
                 textInputAction: TextInputAction.done,
                 key: const Key('secondTextField'),
-                style: const TextStyle(color: Colors.black),
+                style: const TextStyle(
+                    color: Colors.black,
+                    fontFamily: 'Roboto',
+                    fontWeight: FontWeight.w400),
                 focusNode: _focusNode,
                 decoration: InputDecoration(
+                    focusedBorder: OutlineInputBorder(
+                        borderSide:
+                            const BorderSide(color: Colors.white, width: 0.0)),
+                    contentPadding: const EdgeInsets.symmetric(vertical: 8),
                     hintText: L10n.of(context) != null
                         ? L10n.of(context)!.search
                         : "Search Github",
@@ -80,7 +87,7 @@ class _SearchTextFieldState extends ConsumerState<SearchTextField> {
                       color: Colors.black38,
                     ),
                     filled: true,
-                    fillColor: Colors.white,
+                    // fillColor: Colors.white,
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(8),
                         borderSide:
@@ -93,6 +100,8 @@ class _SearchTextFieldState extends ConsumerState<SearchTextField> {
               padding: const EdgeInsets.all(8.0),
               child: Text(
                 L10n.of(context) != null ? L10n.of(context)!.cancel : "Cancel",
+                style: const TextStyle(
+                    fontFamily: 'Roboto', fontWeight: FontWeight.w400),
               ),
             ),
           )
