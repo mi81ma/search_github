@@ -83,9 +83,119 @@ class _SearchRepositoryPageViewState
                 ),
               ),
             ),
+
+            //----- test --------
+            Expanded(
+              child: Scrollbar(
+                child: ListView.builder(
+                  itemCount: _list.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return _list[index];
+                  },
+                ),
+              ),
+            ),
           ],
         ),
       ),
     ));
   }
+
+  var _list = [
+    const SearchResultListItem(
+      fullName: "flutter/flutter",
+      description:
+          "Flutter makes it easy and fast to build beautiful apps for mobile and beyond",
+      stargazersCount: "16,530",
+      language: "Dart",
+    ),
+    //----- test --------
+    const SearchResultListItem(
+      fullName: "flutter/flutter",
+      description:
+          "Flutter makes it easy and fast to build beautiful apps for mobile and beyond",
+      stargazersCount: "16,530",
+      language: "Dart",
+    ),
+    //----- test --------
+    const SearchResultListItem(
+      fullName: "flutter/flutter",
+      description:
+          "Flutter makes it easy and fast to build beautiful apps for mobile and beyond",
+      stargazersCount: "16,530",
+      language: "Dart",
+    ),
+    //----- test --------
+    const SearchResultListItem(
+      fullName: "flutter/flutter",
+      description:
+          "Flutter makes it easy and fast to build beautiful apps for mobile and beyond",
+      stargazersCount: "16,530",
+      language: "Dart",
+    ),
+    //----- test --------
+    const SearchResultListItem(
+      fullName: "flutter/flutter",
+      description:
+          "Flutter makes it easy and fast to build beautiful apps for mobile and beyond",
+      stargazersCount: "16,530",
+      language: "Dart",
+    ),
+    //----- test --------
+    const SearchResultListItem(
+      fullName: "flutter/flutter",
+      description:
+          "Flutter makes it easy and fast to build beautiful apps for mobile and beyond",
+      stargazersCount: "16,530",
+      language: "Dart",
+    ),
+    //----- test --------
+    const SearchResultListItem(
+      fullName: "flutter/flutter",
+      description:
+          "Flutter makes it easy and fast to build beautiful apps for mobile and beyond",
+      stargazersCount: "16,530",
+      language: "Dart",
+    ),
+    //----- test --------
+    const SearchResultListItem(
+      fullName: "flutter/flutter",
+      description:
+          "Flutter makes it easy and fast to build beautiful apps for mobile and beyond",
+      stargazersCount: "16,530",
+      language: "Dart",
+    ),
+    //----- test --------
+    const SearchResultListItem(
+      fullName: "flutter/flutter",
+      description:
+          "Flutter makes it easy and fast to build beautiful apps for mobile and beyond",
+      stargazersCount: "16,530",
+      language: "Dart",
+    ),
+    //----- test --------
+    const SearchResultListItem(
+      fullName: "flutter/flutter",
+      description:
+          "Flutter makes it easy and fast to build beautiful apps for mobile and beyond",
+      stargazersCount: "16,530",
+      language: "Dart",
+    ),
+    //----- test --------
+    const SearchResultListItem(
+      fullName: "flutter/flutter",
+      description:
+          "Flutter makes it easy and fast to build beautiful apps for mobile and beyond",
+      stargazersCount: "16,530",
+      language: "Dart",
+    ),
+    //----- test --------
+    const SearchResultListItem(
+      fullName: "flutter/flutter",
+      description:
+          "Flutter makes it easy and fast to build beautiful apps for mobile and beyond",
+      stargazersCount: "16,530",
+      language: "Dart",
+    ),
+  ];
 }
