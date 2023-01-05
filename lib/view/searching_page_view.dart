@@ -50,104 +50,6 @@ class _SearchingPageViewState extends ConsumerState<SearchingPageView> {
     super.initState();
   }
 
-  var _list = [
-    const SearchResultListItem(
-      fullName: "flutter/flutter",
-      description:
-          "Flutter makes it easy and fast to build beautiful apps for mobile and beyond",
-      stargazersCount: "16,530",
-      language: "Dart",
-    ),
-    //----- test --------
-    const SearchResultListItem(
-      fullName: "flutter/flutter",
-      description:
-          "Flutter makes it easy and fast to build beautiful apps for mobile and beyond",
-      stargazersCount: "16,530",
-      language: "Dart",
-    ),
-    //----- test --------
-    const SearchResultListItem(
-      fullName: "flutter/flutter",
-      description:
-          "Flutter makes it easy and fast to build beautiful apps for mobile and beyond",
-      stargazersCount: "16,530",
-      language: "Dart",
-    ),
-    //----- test --------
-    const SearchResultListItem(
-      fullName: "flutter/flutter",
-      description:
-          "Flutter makes it easy and fast to build beautiful apps for mobile and beyond",
-      stargazersCount: "16,530",
-      language: "Dart",
-    ),
-    //----- test --------
-    const SearchResultListItem(
-      fullName: "flutter/flutter",
-      description:
-          "Flutter makes it easy and fast to build beautiful apps for mobile and beyond",
-      stargazersCount: "16,530",
-      language: "Dart",
-    ),
-    //----- test --------
-    const SearchResultListItem(
-      fullName: "flutter/flutter",
-      description:
-          "Flutter makes it easy and fast to build beautiful apps for mobile and beyond",
-      stargazersCount: "16,530",
-      language: "Dart",
-    ),
-    //----- test --------
-    const SearchResultListItem(
-      fullName: "flutter/flutter",
-      description:
-          "Flutter makes it easy and fast to build beautiful apps for mobile and beyond",
-      stargazersCount: "16,530",
-      language: "Dart",
-    ),
-    //----- test --------
-    const SearchResultListItem(
-      fullName: "flutter/flutter",
-      description:
-          "Flutter makes it easy and fast to build beautiful apps for mobile and beyond",
-      stargazersCount: "16,530",
-      language: "Dart",
-    ),
-    //----- test --------
-    const SearchResultListItem(
-      fullName: "flutter/flutter",
-      description:
-          "Flutter makes it easy and fast to build beautiful apps for mobile and beyond",
-      stargazersCount: "16,530",
-      language: "Dart",
-    ),
-    //----- test --------
-    const SearchResultListItem(
-      fullName: "flutter/flutter",
-      description:
-          "Flutter makes it easy and fast to build beautiful apps for mobile and beyond",
-      stargazersCount: "16,530",
-      language: "Dart",
-    ),
-    //----- test --------
-    const SearchResultListItem(
-      fullName: "flutter/flutter",
-      description:
-          "Flutter makes it easy and fast to build beautiful apps for mobile and beyond",
-      stargazersCount: "16,530",
-      language: "Dart",
-    ),
-    //----- test --------
-    const SearchResultListItem(
-      fullName: "flutter/flutter",
-      description:
-          "Flutter makes it easy and fast to build beautiful apps for mobile and beyond",
-      stargazersCount: "16,530",
-      language: "Dart",
-    ),
-  ];
-
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -166,6 +68,7 @@ class _SearchingPageViewState extends ConsumerState<SearchingPageView> {
                       onEditingComplete: () {
                         print("onEditingComplete");
                         FocusScope.of(context).unfocus();
+                        Navigator.pop(context);
                       },
                       isAutoFocus: true,
                       onCancel: () {
@@ -185,17 +88,6 @@ class _SearchingPageViewState extends ConsumerState<SearchingPageView> {
                                   color: Colors.blue, width: 1))),
                     );
                   },
-                ),
-              ),
-              //----- test --------
-              Expanded(
-                child: Scrollbar(
-                  child: ListView.builder(
-                    itemCount: _list.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return _list[index];
-                    },
-                  ),
                 ),
               ),
             ],
