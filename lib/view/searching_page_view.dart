@@ -5,8 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:search_github/main.dart';
-import 'package:search_github/componet/search_text_field.dart';
+import 'package:search_github/widget/search_result_list_item.dart';
+import 'package:search_github/widget/search_text_field.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:search_github/widget/size_config.dart';
 
 class SearchingPageView extends ConsumerStatefulWidget {
   const SearchingPageView({Key? key}) : super(key: key);
@@ -48,8 +50,107 @@ class _SearchingPageViewState extends ConsumerState<SearchingPageView> {
     super.initState();
   }
 
+  var _list = [
+    const SearchResultListItem(
+      fullName: "flutter/flutter",
+      description:
+          "Flutter makes it easy and fast to build beautiful apps for mobile and beyond",
+      stargazersCount: "16,530",
+      language: "Dart",
+    ),
+    //----- test --------
+    const SearchResultListItem(
+      fullName: "flutter/flutter",
+      description:
+          "Flutter makes it easy and fast to build beautiful apps for mobile and beyond",
+      stargazersCount: "16,530",
+      language: "Dart",
+    ),
+    //----- test --------
+    const SearchResultListItem(
+      fullName: "flutter/flutter",
+      description:
+          "Flutter makes it easy and fast to build beautiful apps for mobile and beyond",
+      stargazersCount: "16,530",
+      language: "Dart",
+    ),
+    //----- test --------
+    const SearchResultListItem(
+      fullName: "flutter/flutter",
+      description:
+          "Flutter makes it easy and fast to build beautiful apps for mobile and beyond",
+      stargazersCount: "16,530",
+      language: "Dart",
+    ),
+    //----- test --------
+    const SearchResultListItem(
+      fullName: "flutter/flutter",
+      description:
+          "Flutter makes it easy and fast to build beautiful apps for mobile and beyond",
+      stargazersCount: "16,530",
+      language: "Dart",
+    ),
+    //----- test --------
+    const SearchResultListItem(
+      fullName: "flutter/flutter",
+      description:
+          "Flutter makes it easy and fast to build beautiful apps for mobile and beyond",
+      stargazersCount: "16,530",
+      language: "Dart",
+    ),
+    //----- test --------
+    const SearchResultListItem(
+      fullName: "flutter/flutter",
+      description:
+          "Flutter makes it easy and fast to build beautiful apps for mobile and beyond",
+      stargazersCount: "16,530",
+      language: "Dart",
+    ),
+    //----- test --------
+    const SearchResultListItem(
+      fullName: "flutter/flutter",
+      description:
+          "Flutter makes it easy and fast to build beautiful apps for mobile and beyond",
+      stargazersCount: "16,530",
+      language: "Dart",
+    ),
+    //----- test --------
+    const SearchResultListItem(
+      fullName: "flutter/flutter",
+      description:
+          "Flutter makes it easy and fast to build beautiful apps for mobile and beyond",
+      stargazersCount: "16,530",
+      language: "Dart",
+    ),
+    //----- test --------
+    const SearchResultListItem(
+      fullName: "flutter/flutter",
+      description:
+          "Flutter makes it easy and fast to build beautiful apps for mobile and beyond",
+      stargazersCount: "16,530",
+      language: "Dart",
+    ),
+    //----- test --------
+    const SearchResultListItem(
+      fullName: "flutter/flutter",
+      description:
+          "Flutter makes it easy and fast to build beautiful apps for mobile and beyond",
+      stargazersCount: "16,530",
+      language: "Dart",
+    ),
+    //----- test --------
+    const SearchResultListItem(
+      fullName: "flutter/flutter",
+      description:
+          "Flutter makes it easy and fast to build beautiful apps for mobile and beyond",
+      stargazersCount: "16,530",
+      language: "Dart",
+    ),
+  ];
+
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -84,6 +185,17 @@ class _SearchingPageViewState extends ConsumerState<SearchingPageView> {
                                   color: Colors.blue, width: 1))),
                     );
                   },
+                ),
+              ),
+              //----- test --------
+              Expanded(
+                child: Scrollbar(
+                  child: ListView.builder(
+                    itemCount: _list.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return _list[index];
+                    },
+                  ),
                 ),
               ),
             ],

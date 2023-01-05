@@ -1,10 +1,10 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:search_github/componet/search_result_list_item.dart';
-import 'package:search_github/componet/size_config.dart';
+import 'package:search_github/widget/search_result_list_item.dart';
+import 'package:search_github/widget/size_config.dart';
 import 'package:search_github/view/searching_page_view.dart';
-import 'package:search_github/componet/search_text_field.dart';
+import 'package:search_github/widget/search_text_field.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:search_github/view_model/search_repository_page_view_model.dart';
 
@@ -24,6 +24,8 @@ class _SearchRepositoryPageViewState
     super.initState();
     _vm.setRef(ref);
   }
+
+  final _controller = ScrollController();
 
   @override
   Widget build(BuildContext context) {
@@ -81,8 +83,6 @@ class _SearchRepositoryPageViewState
                 ),
               ),
             ),
-            //----- test --------
-            SearchResultListItem()
           ],
         ),
       ),
