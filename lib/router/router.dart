@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:routemaster/routemaster.dart';
+import 'package:search_github/view/repository_detail_page_view.dart';
 import 'package:search_github/view/search_repository_page_view.dart';
 
 // final RouteObserver<PageRoute> routeObserver = RouteObserver<PageRoute>();
@@ -29,6 +30,10 @@ class MyObserver extends RoutemasterObserver {
 final routeMap = RouteMap(
   routes: {
     /// root page
-    '/': (_) => const MaterialPage(child: SearchRepositoryPageView()),
+    // '/': (_) => const MaterialPage(child: SearchRepositoryPageView()),
+    '/detail': (_) => const MaterialPage(child: RepositoryDetailPageView()),
+
+    // test test
+    '/': (_) => const MaterialPage(child: RepositoryDetailPageView()),
   },
 );

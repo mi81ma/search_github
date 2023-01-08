@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:search_github/main.dart';
+import 'package:search_github/view_model/searching_page_view_model.dart';
 import 'package:search_github/widget/search_result_list_item.dart';
 import 'package:search_github/widget/search_text_field.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -18,6 +19,7 @@ class SearchingPageView extends ConsumerStatefulWidget {
 }
 
 class _SearchingPageViewState extends ConsumerState<SearchingPageView> {
+  late final SearchingPageViewModel _vm;
   final _focusNode = FocusNode();
   // The message to display.
   String? _message;
@@ -48,6 +50,9 @@ class _SearchingPageViewState extends ConsumerState<SearchingPageView> {
   @override
   void initState() {
     super.initState();
+    _vm = SearchingPageViewModel();
+    _vm.setRef(ref);
+    _vm.init();
   }
 
   @override
@@ -65,6 +70,7 @@ class _SearchingPageViewState extends ConsumerState<SearchingPageView> {
                   animation: _focusNode,
                   builder: (BuildContext context, Widget? child) {
                     return SearchTextField(
+                      textEditingController: _vm.searchWordEditingController,
                       onEditingComplete: () {
                         print("onEditingComplete");
                         FocusScope.of(context).unfocus();

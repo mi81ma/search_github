@@ -5,13 +5,13 @@ import 'package:search_github/widget/size_config.dart';
 class RepositoryDetailItem extends StatelessWidget {
   RepositoryDetailItem({
     super.key,
-    required this.ownerIconUrl,
-    required this.repositoryName,
-    required this.stargazersCount,
-    required this.projectLanguage,
-    required this.watchersCount,
-    required this.forksCount,
-    required this.openIssuesCount,
+    this.ownerIconUrl,
+    this.repositoryName,
+    this.stargazersCount,
+    this.projectLanguage,
+    this.watchersCount,
+    this.forksCount,
+    this.openIssuesCount,
   });
 
   final String? ownerIconUrl; // オーナーアイコン URL (avatar_url)
@@ -31,13 +31,13 @@ class RepositoryDetailItem extends StatelessWidget {
         children: [
           Center(
             child: ClipRRect(
-              borderRadius: BorderRadius.circular(300.0),
-              child: Image.network(
-                ownerIconUrl ?? "",
-                width: 128,
-                height: 128,
-              ),
-            ),
+                borderRadius: BorderRadius.circular(300.0),
+                child: Image(
+                  key: Key('owner_icon'),
+                  width: 128,
+                  height: 128,
+                  image: NetworkImage(ownerIconUrl!),
+                )),
           ),
           const SizedBox(height: 8),
 
@@ -57,166 +57,171 @@ class RepositoryDetailItem extends StatelessWidget {
           ),
           const SizedBox(height: 8),
 
-          // Star 数 (stargazers_count)
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const AutoSizeText(
-                "Stargazers Count:",
-                key: Key("stargazers_count_title"),
-                style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w400,
-                    fontFamily: 'Roboto'),
-              ),
-              const SizedBox(width: 15),
-              const Icon(
-                Icons.star_border,
-                key: Key("star_icon"),
-                color: Colors.black38,
-              ),
-              AutoSizeText(
-                // "16,530",
-                stargazersCount ?? "",
-                key: const Key("stargazers_count"),
-                style: const TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w400,
-                    fontFamily: 'Roboto'),
-              ),
-            ],
-          ),
+          Center(
+            child: SizedBox(
+              height: 200,
+              width: 250,
+              child: Column(
+                children: [
+                  // Star 数 (stargazers_count)
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      const AutoSizeText(
+                        "Stargazers Count:",
+                        key: Key("stargazers_count_title"),
+                        style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w400,
+                            fontFamily: 'Roboto'),
+                      ),
+                      const SizedBox(width: 15),
+                      const Icon(
+                        Icons.star_border,
+                        key: Key("star_icon"),
+                        color: Colors.black38,
+                      ),
+                      AutoSizeText(
+                        // "16,530",
+                        stargazersCount ?? "",
+                        key: const Key("stargazers_count"),
+                        style: const TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w400,
+                            fontFamily: 'Roboto'),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 5),
 
-          Container(height: 5),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      const AutoSizeText(
+                        "Project Language:",
+                        key: Key("project_language_title"),
+                        style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w400,
+                            fontFamily: 'Roboto'),
+                      ),
+                      const SizedBox(width: 15),
+                      // programming langage color circle
+                      Container(
+                        width: 13,
+                        height: 13,
+                        key: const Key("circle_icon"),
+                        decoration: const BoxDecoration(
+                          color: Colors.blue,
+                          shape: BoxShape.circle,
+                        ),
+                      ),
+                      Container(width: 8),
+                      AutoSizeText(
+                        // "Dart",
+                        projectLanguage ?? "",
+                        key: const Key("language"),
+                        style: const TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w400,
+                            fontFamily: 'Roboto'),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 5),
 
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Container(width: SizeConfig.blockSizeHorizontal! * 15),
-              const AutoSizeText(
-                "Project Language:",
-                key: Key("project_language_title"),
-                style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w400,
-                    fontFamily: 'Roboto'),
-              ),
-              const SizedBox(width: 15),
-              // programming langage color circle
-              Container(
-                width: 13,
-                height: 13,
-                key: const Key("circle_icon"),
-                decoration: const BoxDecoration(
-                  color: Colors.blue,
-                  shape: BoxShape.circle,
-                ),
-              ),
-              Container(width: 8),
-              AutoSizeText(
-                // "Dart",
-                projectLanguage ?? "",
-                key: const Key("language"),
-                style: const TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w400,
-                    fontFamily: 'Roboto'),
-              ),
-            ],
-          ),
-          Container(height: 5),
+                  // Watcher 数 (watchers)
+                  Row(
+                    children: [
+                      const AutoSizeText(
+                        "Watchers Count:",
+                        key: Key("watchers_title"),
+                        style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w400,
+                            fontFamily: 'Roboto'),
+                      ),
+                      const SizedBox(width: 20),
+                      const Icon(
+                        Icons.visibility_outlined,
+                        key: Key("watchers_icon"),
+                        color: Colors.black38,
+                      ),
+                      AutoSizeText(
+                        // "16,530",
+                        watchersCount ?? "Error",
+                        key: const Key("watchers_count"),
+                        style: const TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w400,
+                            fontFamily: 'Roboto'),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 5),
 
-          // Fork 数 (forks_count)
-          Row(
-            children: [
-              Container(width: SizeConfig.blockSizeHorizontal! * 15),
-              const AutoSizeText(
-                "Fork Count:",
-                key: Key("fork_count_title"),
-                style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w400,
-                    fontFamily: 'Roboto'),
-              ),
-              const SizedBox(width: 56),
-              const Icon(
-                Icons.fork_left,
-                key: Key("fork_icon"),
-                color: Colors.black38,
-              ),
-              AutoSizeText(
-                // "16,530",
-                watchersCount ?? "forks_count",
-                key: const Key("fo"),
-                style: const TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w400,
-                    fontFamily: 'Robouto'),
-              ),
-            ],
-          ),
+                  // Fork 数 (forks_count)
+                  Row(
+                    children: [
+                      const AutoSizeText(
+                        "Fork Count:",
+                        key: Key("fork_count_title"),
+                        style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w400,
+                            fontFamily: 'Roboto'),
+                      ),
+                      const SizedBox(width: 56),
+                      const Icon(
+                        Icons.fork_left,
+                        key: Key("fork_icon"),
+                        color: Colors.black38,
+                      ),
+                      AutoSizeText(
+                        // "16,530",
+                        forksCount ?? "Error",
+                        key: const Key("forks_count"),
+                        style: const TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w400,
+                            fontFamily: 'Robouto'),
+                      ),
+                    ],
+                  ),
 
-          Container(height: 5),
+                  const SizedBox(height: 5),
 
-          // Watcher 数 (watchers)
-          Row(
-            children: [
-              Container(width: SizeConfig.blockSizeHorizontal! * 15),
-              const AutoSizeText(
-                "Watchers Count:",
-                key: Key("watchers_title"),
-                style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w400,
-                    fontFamily: 'Roboto'),
+                  // Issue 数 (open_issues_count)
+                  Row(
+                    children: [
+                      const AutoSizeText(
+                        "Issue Count:",
+                        key: Key("issue_title"),
+                        style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w400,
+                            fontFamily: 'Roboto'),
+                      ),
+                      const SizedBox(width: 48),
+                      const Icon(
+                        Icons.adjust,
+                        key: Key("issue_icon"),
+                        color: Colors.black38,
+                      ),
+                      AutoSizeText(
+                        // "16,530",
+                        openIssuesCount ?? "Error",
+                        key: const Key("open_issues_count"),
+                        style: const TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w400,
+                            fontFamily: 'Roboto'),
+                      ),
+                    ],
+                  ),
+                ],
               ),
-              const SizedBox(width: 20),
-              const Icon(
-                Icons.visibility_outlined,
-                key: Key("watchers_icon"),
-                color: Colors.black38,
-              ),
-              AutoSizeText(
-                // "16,530",
-                watchersCount ?? "Error",
-                key: const Key("watchers_count"),
-                style: const TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w400,
-                    fontFamily: 'Roboto'),
-              ),
-            ],
-          ),
-          Container(height: 5),
-
-          // Watcher 数 (watchers)
-          Row(
-            children: [
-              Container(width: SizeConfig.blockSizeHorizontal! * 15),
-              const AutoSizeText(
-                "Issue Count:",
-                key: Key("issue_title"),
-                style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w400,
-                    fontFamily: 'Roboto'),
-              ),
-              const SizedBox(width: 48),
-              const Icon(
-                Icons.adjust,
-                key: Key("issue_icon"),
-                color: Colors.black38,
-              ),
-              AutoSizeText(
-                // "16,530",
-                openIssuesCount ?? "Error",
-                key: const Key("open_issues_count"),
-                style: const TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w400,
-                    fontFamily: 'Roboto'),
-              ),
-            ],
+            ),
           ),
         ],
       ),

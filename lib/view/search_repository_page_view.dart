@@ -18,14 +18,14 @@ class SearchRepositoryPageView extends ConsumerStatefulWidget {
 
 class _SearchRepositoryPageViewState
     extends ConsumerState<SearchRepositoryPageView> {
-  final SearchRepositoryPageViewModel _vm = SearchRepositoryPageViewModel();
+  late final SearchRepositoryPageViewModel _vm;
+
   @override
   void initState() {
+    _vm = SearchRepositoryPageViewModel();
     super.initState();
     _vm.setRef(ref);
   }
-
-  final _controller = ScrollController();
 
   @override
   Widget build(BuildContext context) {
@@ -54,6 +54,7 @@ class _SearchRepositoryPageViewState
             ),
             const SizedBox(height: 10),
             TextField(
+              controller: _vm.searchWordEditingController,
               onTap: () async {
                 Navigator.push(
                   context,

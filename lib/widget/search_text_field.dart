@@ -16,6 +16,7 @@ class SearchTextField extends ConsumerStatefulWidget {
     this.onEditingComplete,
     this.inputDecoration,
     this.isAutoFocus,
+    this.textEditingController,
   }) : super(key: key);
 
   final void Function(bool hasFocus)? onFocusChange;
@@ -24,6 +25,7 @@ class SearchTextField extends ConsumerStatefulWidget {
   final VoidCallback? onEditingComplete;
   final InputDecoration? inputDecoration;
   final bool? isAutoFocus;
+  final TextEditingController? textEditingController;
 
   @override
   ConsumerState<SearchTextField> createState() => _SearchTextFieldState();
@@ -64,6 +66,7 @@ class _SearchTextFieldState extends ConsumerState<SearchTextField> {
       children: [
         Expanded(
             child: TextField(
+                controller: widget.textEditingController,
                 keyboardType: TextInputType.text,
                 onEditingComplete: widget.onEditingComplete,
                 autofocus: _isAutoFocus,
