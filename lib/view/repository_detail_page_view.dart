@@ -26,7 +26,6 @@ class RepositoryDetailPageView extends ConsumerStatefulWidget {
 
 class _RepositoryDetailPageViewState
     extends ConsumerState<RepositoryDetailPageView> {
-  final _focusNode = FocusNode();
   // The message to display.
   String? _message;
 
@@ -63,6 +62,9 @@ class _RepositoryDetailPageViewState
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Scaffold(
+      appBar: AppBar(
+        title: const Text("Repository Detail"),
+      ),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 32),

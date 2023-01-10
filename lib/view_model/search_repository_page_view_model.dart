@@ -12,13 +12,15 @@ class SearchRepositoryPageViewModel {
   ///-------------------------------
   // Header
   ///-------------------------------
-  void backButton() {
-    print("press back button");
-    routemaster.pop();
-  }
 
   void setRef(WidgetRef ref) async {
     _ref = ref;
+  }
+
+  void onTap() {
+    routemaster.push('/detail');
+
+    debugPrint("after ontap");
   }
 }
 

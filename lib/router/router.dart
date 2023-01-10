@@ -30,10 +30,10 @@ class MyObserver extends RoutemasterObserver {
 final routeMap = RouteMap(
   routes: {
     /// root page
-    // '/': (_) => const MaterialPage(child: SearchRepositoryPageView()),
+    '/': (_) => const MaterialPage(child: SearchRepositoryPageView()),
     '/detail': (_) => const MaterialPage(child: RepositoryDetailPageView()),
 
     // test test
-    '/': (_) => const MaterialPage(child: RepositoryDetailPageView()),
+    // '/': (_) => const MaterialPage(child: RepositoryDetailPageView()),
   },
 );
