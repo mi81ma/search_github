@@ -11,11 +11,11 @@ class SearchingPageViewModel {
   void setRef(WidgetRef ref) async {
     _ref = ref;
   }
-  
+
   void init() async {
-        final searchWord = _ref.watch(searchWordProvider);
+    final searchWord = _ref.watch(searchWordProvider);
     if (searchWord != null) {
-      setSearchWordOnTextField(word: searchWord);      
+      setSearchWordOnTextField(word: searchWord);
     }
   }
 
@@ -24,6 +24,17 @@ class SearchingPageViewModel {
   }
 
   TextEditingController searchWordEditingController = TextEditingController();
+
+  void onEditingComplete() {
+    _ref
+        .read(searchWordProvider.notifier)
+        .update((state) => searchWordEditingController.text);
+    routemaster.pop();
+  }
+
+  void onTapCancel() {
+    routemaster.pop();
+  }
 
   ///-------------------------------
   // Header

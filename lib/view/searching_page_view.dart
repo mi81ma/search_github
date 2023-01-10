@@ -74,12 +74,12 @@ class _SearchingPageViewState extends ConsumerState<SearchingPageView> {
                       onEditingComplete: () {
                         print("onEditingComplete");
                         FocusScope.of(context).unfocus();
-                        Navigator.pop(context);
+                        _vm.onEditingComplete;
                       },
                       isAutoFocus: true,
                       onCancel: () {
                         FocusScope.of(context).unfocus();
-                        Navigator.pop(context);
+                        _vm.onTapCancel();
                       },
                       inputDecoration: InputDecoration(
                           focusColor: null,
