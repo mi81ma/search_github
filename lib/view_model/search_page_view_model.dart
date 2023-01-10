@@ -29,6 +29,10 @@ class SearchPageViewModel {
         .update((state) => searchWordEditingController.text);
     debugPrint(_ref.read(searchWordProvider));
   }
+
+  void clear() {
+    searchWordEditingController.text = "";
+  }
 }
 
 final searchWordProvider = StateProvider<String?>((ref) => null);
