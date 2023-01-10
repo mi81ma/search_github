@@ -60,10 +60,13 @@ dev_dependencies:
   # build runner for freezed & l10n
   build_runner: ^2.3.2
 
+  # network image test
+  network_image_mock: ^2.1.1
+
 
 flutter:
   assets:
-    - assets/
+    - assets/images/
   uses-material-design: true
   generate: true # for l10n
   fonts:

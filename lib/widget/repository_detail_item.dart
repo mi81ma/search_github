@@ -1,9 +1,8 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:search_github/widget/size_config.dart';
 
 class RepositoryDetailItem extends StatelessWidget {
-  RepositoryDetailItem({
+  const RepositoryDetailItem({
     super.key,
     this.ownerIconUrl,
     this.repositoryName,
@@ -32,11 +31,12 @@ class RepositoryDetailItem extends StatelessWidget {
           Center(
             child: ClipRRect(
                 borderRadius: BorderRadius.circular(300.0),
-                child: Image(
+                child: const Image(
                   key: Key('owner_icon'),
                   width: 128,
                   height: 128,
-                  image: NetworkImage(ownerIconUrl!),
+                  image: AssetImage('assets/images/dymo_labels-02.png'),
+                  // image: NetworkImage(ownerIconUrl!),
                 )),
           ),
           const SizedBox(height: 8),

@@ -9,25 +9,32 @@ void main() {
     'API request with GitHub api server',
     () async {
       final client = GithubApiClient();
-      final returnData = await client.queryRequest(searchRequest: "rust");
+      final returnData = await client.queryRequest(
+          searchRequest: "flutter", resultsPerPage: 30);
       final data = json.decode(returnData);
       final SearchRepositoryModel result = SearchRepositoryModel.fromJson(data);
 
-      expect(result.items!.first.id, 77338532);
-      expect(result.items!.first.nodeId, "MDEwOlJlcG9zaXRvcnk3NzMzODUzMg==");
-      expect(result.items!.first.fullName, "cross-rs/cross");
-      expect(result.items!.first.private, false);
-      expect(result.items!.first.owner.login, "cross-rs");
-      expect(result.items!.first.owner.id, 93954236);
-      expect(result.items!.first.owner.url,
-          "https://api.github.com/users/cross-rs");
-      expect(result.items!.first.owner.starredUrl,
-          "https://api.github.com/users/cross-rs/starred{/owner}{/repo}");
-      expect(result.items!.first.owner.subscriptionsUrl,
-          "https://api.github.com/users/cross-rs/subscriptions");
+      // オーナーアイコン URL (avatar_url)
+      expect(result.items!.first.owner.avatarUrl,
+          "https://avatars.githubusercontent.com/u/14101776?v=4");
 
-      expect(result.totalCount, 5050);
-      expect(result.incompleteResults, false);
+      // リポジトリ名 (full_name)
+      expect(result.items!.first.fullName, "flutter/flutter");
+
+      // Star 数 (stargazers_count)
+      expect(result.items!.first.stargazersCount, 148184);
+
+      // プロジェクト言語 (language)
+      expect(result.items!.first.language, "Dart");
+
+      // Watcher 数 (watchers)
+      expect(result.items!.first.watchers, 148184);
+
+      // Fork 数 (forks_count)
+      expect(result.items!.first.forksCount, 24210);
+
+      // Issue 数 (open_issues_count)
+      expect(result.items!.first.openIssuesCount, 11459);
     },
   );
 }
