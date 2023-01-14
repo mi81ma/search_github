@@ -85,74 +85,76 @@ class _SearchPageViewState extends ConsumerState<SearchPageView> {
                   ),
                 ),
               ),
-              Expanded(
-                child: Column(
-                  children: [
-                    const SizedBox(height: 24),
-                    if (searchWord != null && searchWord != "") ...[
-                      ref.watch(apiFamilyProvider(searchWord)).when(
-                            data: (data) => Expanded(
-                              child: Scrollbar(
-                                child: ListView(children: [
-                                  for (final oneData in data)
-                                    if (oneData.fullName != null &&
-                                        oneData.fullName != "")
-                                      searchItem(
-                                        fullName: oneData.fullName ?? "",
-                                        description: oneData.description ?? "",
-                                        stargazersCount:
-                                            oneData.stargazersCount != null
-                                                ? "${oneData.stargazersCount}"
-                                                : "",
-                                        language: oneData.language ?? "",
-                                        itemData: oneData,
-                                      )
-                                ]),
+              const SizedBox(height: 16),
+              if (searchWord != null && searchWord != "") ...[
+                ref.watch(apiFamilyProvider(searchWord)).when(
+                      data: (data) => RefreshIndicator(
+                        onRefresh: () async {
+                          ref.refresh(apiFamilyProvider(searchWord));
+                        },
+                        child: SizedBox(
+                          height: SizeConfig.safeBlockVertical! * 100 - 180,
+                          width: SizeConfig.safeBlockHorizontal! * 100 - 24,
+                          child: Expanded(
+                            child: Scrollbar(
+                              child: ListView(children: [
+                                for (final oneData in data)
+                                  if (oneData.fullName != null &&
+                                      oneData.fullName != "")
+                                    searchItem(
+                                      fullName: oneData.fullName ?? "",
+                                      description: oneData.description ?? "",
+                                      stargazersCount:
+                                          oneData.stargazersCount != null
+                                              ? "${oneData.stargazersCount}"
+                                              : "",
+                                      language: oneData.language ?? "",
+                                      itemData: oneData,
+                                    )
+                              ]),
+                            ),
+                          ),
+                        ),
+                      ),
+                      error: (error, stack) {
+                        return Column(
+                          children: [
+                            const SizedBox(
+                              height: 30,
+                            ),
+                            Text('Error: $error'),
+                            const SizedBox(
+                              height: 30,
+                            ),
+                            OutlinedButton(
+                              onPressed: () async {
+                                ref.refresh(apiFamilyProvider(searchWord));
+                              },
+                              style: OutlinedButton.styleFrom(
+                                  side: const BorderSide(
+                                      color: Colors.blue, width: 2),
+                                  minimumSize: const Size(200, 40)),
+                              child: const Text(
+                                'Refresh Data',
+                                style:
+                                    TextStyle(color: Colors.blue, fontSize: 20),
                               ),
                             ),
-                            error: (error, stack) {
-                              return Column(
-                                children: [
-                                  const SizedBox(
-                                    height: 30,
-                                  ),
-                                  Text('Error: $error'),
-                                  const SizedBox(
-                                    height: 30,
-                                  ),
-                                  OutlinedButton(
-                                    onPressed: () async {
-                                      ref.refresh(
-                                          apiFamilyProvider(searchWord));
-                                    },
-                                    style: OutlinedButton.styleFrom(
-                                        side: const BorderSide(
-                                            color: Colors.blue, width: 2),
-                                        minimumSize: const Size(200, 40)),
-                                    child: const Text(
-                                      'Refresh Data',
-                                      style: TextStyle(
-                                          color: Colors.blue, fontSize: 20),
-                                    ),
-                                  ),
-                                ],
-                              );
-                            },
-                            loading: () => Center(
-                              child: Column(
-                                children: [
-                                  Container(
-                                    height: 20,
-                                  ),
-                                  const CircularProgressIndicator(),
-                                ],
-                              ),
+                          ],
+                        );
+                      },
+                      loading: () => Center(
+                        child: Column(
+                          children: [
+                            Container(
+                              height: 20,
                             ),
-                          )
-                    ]
-                  ],
-                ),
-              ),
+                            const CircularProgressIndicator(),
+                          ],
+                        ),
+                      ),
+                    )
+              ],
             ],
           ),
         ),
@@ -183,7 +185,7 @@ class _SearchPageViewState extends ConsumerState<SearchPageView> {
                   ),
                   const SizedBox(width: 8),
                   SizedBox(
-                    width: SizeConfig.screenWidth! - 96,
+                    width: SizeConfig.blockSizeHorizontal! * 100 - 192,
                     child: AutoSizeText(
                       // "flutter/flutter",
                       fullName,
