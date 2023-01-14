@@ -5,9 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:search_github/view_model/search_page_view_model.dart';
 import 'package:search_github/widget/size_config.dart';
-import 'package:search_github/view/searching_page_view.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:search_github/view_model/search_repository_page_view_model.dart';
 
 class SearchPageView extends ConsumerStatefulWidget {
   const SearchPageView({Key? key}) : super(key: key);
@@ -30,13 +28,15 @@ class _SearchPageViewState extends ConsumerState<SearchPageView> {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
+    final searchWord = ref.watch(searchWordProvider);
+
     return Scaffold(
         body: SafeArea(
       child: GestureDetector(
         onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-        behavior: HitTestBehavior.opaque, // これを追加！！！
+        behavior: HitTestBehavior.opaque,
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 32),
+          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 24),
           child: Column(
             children: [
               Row(
@@ -75,7 +75,7 @@ class _SearchPageViewState extends ConsumerState<SearchPageView> {
                   ),
                   suffixIcon: IconButton(
                     onPressed: () => _vm.clear(), //リセット処理
-                    icon: Icon(Icons.clear),
+                    icon: const Icon(Icons.clear),
                   ),
                   filled: true,
                   border: OutlineInputBorder(
@@ -84,119 +84,180 @@ class _SearchPageViewState extends ConsumerState<SearchPageView> {
                   ),
                 ),
               ),
-
-              //----- test --------
               Expanded(
-                child: Scrollbar(
-                    child: ListView(
+                child: Column(
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: GestureDetector(
-                        onTap: () => {_vm.onTap(), debugPrint("onTap title")},
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              children: [
-                                const SizedBox(height: 8),
-                                const Icon(
-                                  Icons.book_outlined,
-                                  key: Key("book_icon"),
-                                ),
-                                const SizedBox(width: 8),
-                                const AutoSizeText(
-                                  // "flutter/flutter",
-                                  "flutter/flutter",
-                                  key: Key('full_name'),
-                                  style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w400,
-                                      fontFamily: 'Roboto'),
-                                ),
-                              ],
-                            ),
-                            const SizedBox(height: 8),
-                            const SizedBox(
-                              width: double.infinity,
-                              child: AutoSizeText(
-                                "Flutter makes it easy and fast to build beautiful apps for mobile and beyond",
-                                textAlign: TextAlign.left,
-                                key: Key("description"),
-                                style: TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w400,
-                                    fontFamily: 'Roboto'),
+                    const SizedBox(height: 24),
+                    if (searchWord != null && searchWord != "") ...[
+                      ref.watch(apiFamilyProvider(searchWord)).when(
+                            data: (data) => Expanded(
+                              child: Scrollbar(
+                                child: ListView(children: [
+                                  for (final oneData in data)
+                                    if (oneData.fullName != null &&
+                                        oneData.fullName != "")
+                                      searchItem(
+                                          fullName: oneData.fullName ?? "",
+                                          description:
+                                              oneData.description ?? "",
+                                          stargazersCount:
+                                              oneData.stargazersCount != null
+                                                  ? "${oneData.stargazersCount}"
+                                                  : "",
+                                          language: oneData.language ?? "")
+                                ]),
                               ),
                             ),
-                            const SizedBox(height: 8),
-                            Row(
-                              children: [
-                                const Icon(
-                                  Icons.star_border,
-                                  key: Key("star_icon"),
-                                  color: Colors.black38,
-                                ),
-                                const AutoSizeText(
-                                  "16,530",
-                                  key: Key("stargazers_count"),
-                                  style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w400,
-                                      fontFamily: 'Roboto'),
-                                ),
-                                const SizedBox(width: 15),
-                                // programming langage color circle
-                                Row(
-                                  children: [
-                                    Container(
-                                      width: 13,
-                                      height: 13,
-                                      key: const Key("circle_icon"),
-                                      decoration: const BoxDecoration(
-                                        color: Colors.blue,
-                                        shape: BoxShape.circle,
-                                      ),
+                            error: (error, stack) {
+                              return Column(
+                                children: [
+                                  const SizedBox(
+                                    height: 30,
+                                  ),
+                                  Text('Error: $error'),
+                                  const SizedBox(
+                                    height: 30,
+                                  ),
+                                  OutlinedButton(
+                                    onPressed: () async {
+                                      ref.refresh(
+                                          apiFamilyProvider(searchWord));
+                                    },
+                                    style: OutlinedButton.styleFrom(
+                                        side: const BorderSide(
+                                            color: Colors.blue, width: 2),
+                                        minimumSize: const Size(200, 40)),
+                                    child: const Text(
+                                      'Refresh Data',
+                                      style: TextStyle(
+                                          color: Colors.blue, fontSize: 20),
                                     ),
-                                  ],
-                                ),
-                                Container(width: 5),
-                                const AutoSizeText(
-                                  "Dart",
-                                  key: Key("language"),
-                                  style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w400,
-                                      fontFamily: 'Roboto'),
-                                ),
-                              ],
+                                  ),
+                                ],
+                              );
+                            },
+                            loading: () => Center(
+                              child: Column(
+                                children: [
+                                  Container(
+                                    height: 20,
+                                  ),
+                                  const CircularProgressIndicator(),
+                                ],
+                              ),
                             ),
-                            const SizedBox(height: 8),
-                            const Divider(
-                              key: Key("divider"),
-                              color: Colors.black38,
-                              thickness: 0.5,
-                              height: 8,
-                            )
-                          ],
-                        ),
-                      ),
-                    ),
+                          )
+                    ]
                   ],
-                )
-                    // ListView.builder(
-                    //   itemCount: _list.length,
-                    //   itemBuilder: (BuildContext context, int index) {
-                    //     return _list[index];
-                    //   },
-                    // ),
-                    ),
+                ),
               ),
             ],
           ),
         ),
       ),
     ));
+  }
+
+  Padding searchItem({
+    required String fullName,
+    required String description,
+    required String stargazersCount,
+    required String language,
+  }) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: GestureDetector(
+          onTap: () => {_vm.onTap(), debugPrint("onTap title")},
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  const Icon(
+                    Icons.book_outlined,
+                    key: Key("book_icon"),
+                  ),
+                  const SizedBox(width: 8),
+                  SizedBox(
+                    width: SizeConfig.screenWidth! - 96,
+                    child: AutoSizeText(
+                      // "flutter/flutter",
+                      fullName,
+                      key: const Key('full_name'),
+                      style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w400,
+                          fontFamily: 'Roboto'),
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 8),
+              SizedBox(
+                width: double.infinity,
+                child: AutoSizeText(
+                  description,
+                  textAlign: TextAlign.left,
+                  key: const Key("description"),
+                  style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w400,
+                      fontFamily: 'Roboto'),
+                ),
+              ),
+              const SizedBox(height: 8),
+              Row(
+                children: [
+                  const Icon(
+                    Icons.star_border,
+                    key: Key("star_icon"),
+                    color: Colors.black38,
+                  ),
+                  AutoSizeText(
+                    stargazersCount,
+                    key: const Key("stargazers_count"),
+                    style: const TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w400,
+                        fontFamily: 'Roboto'),
+                  ),
+                  const SizedBox(width: 15),
+                  // programming langage color circle
+                  Row(
+                    children: [
+                      Container(
+                        width: 13,
+                        height: 13,
+                        key: const Key("circle_icon"),
+                        decoration: const BoxDecoration(
+                          color: Colors.blue,
+                          shape: BoxShape.circle,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Container(width: 5),
+                  AutoSizeText(
+                    language,
+                    key: const Key("language"),
+                    style: const TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w400,
+                        fontFamily: 'Roboto'),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 8),
+              const Divider(
+                key: Key("divider"),
+                color: Colors.black38,
+                thickness: 0.5,
+                height: 8,
+              )
+            ],
+          )),
+    );
   }
 
   // final _list = [
