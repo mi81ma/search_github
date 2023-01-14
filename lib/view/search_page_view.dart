@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:search_github/data_model/item.dart';
 import 'package:search_github/view_model/search_page_view_model.dart';
 import 'package:search_github/widget/size_config.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -97,14 +98,15 @@ class _SearchPageViewState extends ConsumerState<SearchPageView> {
                                     if (oneData.fullName != null &&
                                         oneData.fullName != "")
                                       searchItem(
-                                          fullName: oneData.fullName ?? "",
-                                          description:
-                                              oneData.description ?? "",
-                                          stargazersCount:
-                                              oneData.stargazersCount != null
-                                                  ? "${oneData.stargazersCount}"
-                                                  : "",
-                                          language: oneData.language ?? "")
+                                        fullName: oneData.fullName ?? "",
+                                        description: oneData.description ?? "",
+                                        stargazersCount:
+                                            oneData.stargazersCount != null
+                                                ? "${oneData.stargazersCount}"
+                                                : "",
+                                        language: oneData.language ?? "",
+                                        itemData: oneData,
+                                      )
                                 ]),
                               ),
                             ),
@@ -163,11 +165,13 @@ class _SearchPageViewState extends ConsumerState<SearchPageView> {
     required String description,
     required String stargazersCount,
     required String language,
+    required Item itemData,
   }) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: GestureDetector(
-          onTap: () => {_vm.onTap(), debugPrint("onTap title")},
+          onTap: () =>
+              {_vm.onTap(itemData: itemData), debugPrint("onTap title")},
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

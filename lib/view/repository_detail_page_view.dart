@@ -10,8 +10,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:search_github/view_model/repository_detail_page_view_model.dart';
 import 'package:search_github/widget/repository_detail_item.dart';
-import 'package:search_github/widget/search_result_list_item.dart';
 import 'package:search_github/widget/size_config.dart';
 
 class RepositoryDetailPageView extends ConsumerStatefulWidget {
@@ -26,36 +26,14 @@ class RepositoryDetailPageView extends ConsumerStatefulWidget {
 
 class _RepositoryDetailPageViewState
     extends ConsumerState<RepositoryDetailPageView> {
-  // The message to display.
-  String? _message;
-
-// Handles the key events from the Focus widget and updates the
-// _message.
-  KeyEventResult _handleKeyEvent(FocusNode node, RawKeyEvent event) {
-    setState(() {
-      if (event.logicalKey == LogicalKeyboardKey.keyQ) {
-        _message = 'Pressed the "Q" key!';
-      } else {
-        if (kReleaseMode) {
-          _message =
-              'Not a Q: Pressed 0x${event.logicalKey.keyId.toRadixString(16)}';
-          print(_message);
-        } else {
-          // As the name implies, the debugName will only print useful
-          // information in debug mode.
-          _message = 'Not a Q: Pressed ${event.logicalKey.debugName}';
-          print(_message);
-        }
-      }
-    });
-    return event.logicalKey == LogicalKeyboardKey.keyQ
-        ? KeyEventResult.handled
-        : KeyEventResult.ignored;
-  }
+  late final RepositoryDetailPageViewModel _vm;
 
   @override
   void initState() {
     super.initState();
+    _vm = RepositoryDetailPageViewModel();
+
+    _vm.setRef(ref);
   }
 
   @override
@@ -67,20 +45,23 @@ class _RepositoryDetailPageViewState
       ),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 32),
-          child: Column(
-            children: [
-              RepositoryDetailItem(
-                ownerIconUrl:
-                    'https://avatars.githubusercontent.com/u/14101776?v=4',
-                repositoryName: "flutter/flutter",
-                stargazersCount: '1234567',
-                projectLanguage: 'Dart',
-                watchersCount: '1234567',
-                forksCount: '1234567',
-                openIssuesCount: '1234567',
-              )
-            ],
+          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                if (_vm.itemData() != null) ...[
+                  RepositoryDetailItem(
+                    ownerIconUrl: _vm.itemData()!.owner.avatarUrl,
+                    repositoryName: _vm.itemData()!.fullName,
+                    stargazersCount: _vm.itemData()!.stargazersCount,
+                    projectLanguage: _vm.itemData()!.language,
+                    watchersCount: _vm.itemData()!.watchersCount,
+                    forksCount: _vm.itemData()!.forksCount,
+                    openIssuesCount: _vm.itemData()!.openIssuesCount,
+                  )
+                ]
+              ],
+            ),
           ),
         ),
       ),

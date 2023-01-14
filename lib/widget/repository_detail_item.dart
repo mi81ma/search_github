@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:search_github/widget/size_config.dart';
 
 class RepositoryDetailItem extends StatelessWidget {
   const RepositoryDetailItem({
@@ -15,49 +16,64 @@ class RepositoryDetailItem extends StatelessWidget {
 
   final String? ownerIconUrl; // オーナーアイコン URL (avatar_url)
   final String? repositoryName; // リポジトリ名 (full_name)
-  final String? stargazersCount; // Star 数 (stargazers_count)
+  final int? stargazersCount; // Star 数 (stargazers_count)
   final String? projectLanguage; // プロジェクト言語 (language)
-  final String? watchersCount; // Watcher 数 (watchers)
-  final String? forksCount; // Fork 数 (forks_count)
-  final String? openIssuesCount; // Issue 数 (open_issues_count)
+  final int? watchersCount; // Watcher 数 (watchers)
+  final int? forksCount; // Fork 数 (forks_count)
+  final int? openIssuesCount; // Issue 数 (open_issues_count)
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Center(
-            child: ClipRRect(
-                borderRadius: BorderRadius.circular(300.0),
-                child: const Image(
-                  key: Key('owner_icon'),
-                  width: 128,
-                  height: 128,
-                  image: AssetImage('assets/images/dymo_labels-02.png'),
-                  // image: NetworkImage(ownerIconUrl!),
-                )),
-          ),
-          const SizedBox(height: 8),
+    SizeConfig().init(context);
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Center(
+            child: ownerIconUrl != null
+                ? ClipRRect(
+                    borderRadius: BorderRadius.circular(300.0),
+                    child: Image(
+                        key: const Key('owner_icon'),
+                        width: 128,
+                        height: 128,
+                        image: NetworkImage(ownerIconUrl!)
+                        // image: NetworkImage(ownerIconUrl!),
+                        ))
+                : ClipRRect(
+                    borderRadius: BorderRadius.circular(300.0),
+                    child: const Image(
+                      key: Key('owner_icon'),
+                      width: 128,
+                      height: 128,
+                      image: AssetImage('assets/images/dymo_labels-02.png'),
+                      // image: NetworkImage(ownerIconUrl!),
+                    ))),
+        const SizedBox(height: 8),
 
-          // リポジトリ名
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              AutoSizeText(
-                repositoryName ?? "",
-                key: const Key('repository_name'),
-                style: const TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.w400,
-                    fontFamily: 'Roboto'),
+        // Repository Name
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SizedBox(
+              width: SizeConfig.screenWidth! - 64,
+              child: Center(
+                child: AutoSizeText(
+                  repositoryName ?? "",
+                  key: const Key('repository_name'),
+                  style: const TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.w400,
+                      fontFamily: 'Roboto'),
+                ),
               ),
-            ],
-          ),
-          const SizedBox(height: 8),
+            ),
+          ],
+        ),
+        const SizedBox(height: 8),
 
-          Center(
+        SizedBox(
+          width: SizeConfig.screenWidth! - 64,
+          child: Center(
             child: SizedBox(
               height: 200,
               width: 250,
@@ -81,9 +97,12 @@ class RepositoryDetailItem extends StatelessWidget {
                         key: Key("star_icon"),
                         color: Colors.black38,
                       ),
+                      const SizedBox(width: 2),
                       AutoSizeText(
                         // "16,530",
-                        stargazersCount ?? "",
+                        stargazersCount != null
+                            ? "$stargazersCount"
+                            : "No Data",
                         key: const Key("stargazers_count"),
                         style: const TextStyle(
                             fontSize: 16,
@@ -105,7 +124,7 @@ class RepositoryDetailItem extends StatelessWidget {
                             fontWeight: FontWeight.w400,
                             fontFamily: 'Roboto'),
                       ),
-                      const SizedBox(width: 15),
+                      const SizedBox(width: 18),
                       // programming langage color circle
                       Container(
                         width: 13,
@@ -117,14 +136,17 @@ class RepositoryDetailItem extends StatelessWidget {
                         ),
                       ),
                       Container(width: 8),
-                      AutoSizeText(
-                        // "Dart",
-                        projectLanguage ?? "",
-                        key: const Key("language"),
-                        style: const TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w400,
-                            fontFamily: 'Roboto'),
+                      Expanded(
+                        child: AutoSizeText(
+                          // "Dart",
+                          projectLanguage ?? "",
+                          key: const Key("language"),
+                          style: const TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w400,
+                              fontFamily: 'Roboto'),
+                          overflow: TextOverflow.ellipsis,
+                        ),
                       ),
                     ],
                   ),
@@ -141,15 +163,16 @@ class RepositoryDetailItem extends StatelessWidget {
                             fontWeight: FontWeight.w400,
                             fontFamily: 'Roboto'),
                       ),
-                      const SizedBox(width: 20),
+                      const SizedBox(width: 22),
                       const Icon(
                         Icons.visibility_outlined,
                         key: Key("watchers_icon"),
                         color: Colors.black38,
                       ),
+                      const SizedBox(width: 4),
                       AutoSizeText(
                         // "16,530",
-                        watchersCount ?? "Error",
+                        watchersCount != null ? "$watchersCount" : "No Data",
                         key: const Key("watchers_count"),
                         style: const TextStyle(
                             fontSize: 16,
@@ -177,9 +200,10 @@ class RepositoryDetailItem extends StatelessWidget {
                         key: Key("fork_icon"),
                         color: Colors.black38,
                       ),
+                      const SizedBox(width: 6),
                       AutoSizeText(
                         // "16,530",
-                        forksCount ?? "Error",
+                        forksCount != null ? "$forksCount" : "No Data",
                         key: const Key("forks_count"),
                         style: const TextStyle(
                             fontSize: 16,
@@ -202,15 +226,18 @@ class RepositoryDetailItem extends StatelessWidget {
                             fontWeight: FontWeight.w400,
                             fontFamily: 'Roboto'),
                       ),
-                      const SizedBox(width: 48),
+                      const SizedBox(width: 50),
                       const Icon(
                         Icons.adjust,
                         key: Key("issue_icon"),
                         color: Colors.black38,
                       ),
+                      const SizedBox(width: 6),
                       AutoSizeText(
                         // "16,530",
-                        openIssuesCount ?? "Error",
+                        openIssuesCount != null
+                            ? "$openIssuesCount"
+                            : "No Data",
                         key: const Key("open_issues_count"),
                         style: const TextStyle(
                             fontSize: 16,
@@ -223,8 +250,8 @@ class RepositoryDetailItem extends StatelessWidget {
               ),
             ),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

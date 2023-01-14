@@ -22,9 +22,12 @@ class SearchPageViewModel {
     _ref = ref;
   }
 
-  void onTap() {
-    routemaster.push('/detail');
+  void onTap({Item? itemData}) {
+    // Set Detail Page Data
+    _ref.read(detailPageDataProvider.notifier).update((state) => itemData);
 
+    // Page transition to detail page
+    routemaster.push('/detail');
     debugPrint("after ontap");
   }
 
@@ -55,8 +58,6 @@ final _searchLogicProvider =
     StateProvider<SearchPageLogic>((ref) => SearchPageLogic());
 final searchWordProvider = StateProvider<String?>((ref) => null);
 
-// final _searchResultListProvider = StateProvider<List<Item>?>((ref) => null);
-
 AutoDisposeFutureProviderFamily<List<Item>, String> apiFamilyProvider =
     FutureProvider.autoDispose
         .family<List<Item>, String>((ref, searchWords) async {
@@ -75,3 +76,5 @@ AutoDisposeFutureProviderFamily<List<Item>, String> apiFamilyProvider =
 
   return result;
 });
+
+final detailPageDataProvider = StateProvider<Item?>((ref) => null);
