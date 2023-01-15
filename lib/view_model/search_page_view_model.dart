@@ -63,7 +63,7 @@ AutoDisposeFutureProviderFamily<List<Item>, String> apiFamilyProvider =
         .family<List<Item>, String>((ref, searchWords) async {
   final logic = ref.watch(_searchLogicProvider);
   print("001 -------------------------");
-  final result = await logic.searchRequest(
+  final result = await logic.getSearchApiRequest(
     searchWords: searchWords,
     resultsPerPage: 100,
   );

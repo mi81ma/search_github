@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:search_github/data_model/item.dart';
 import 'package:search_github/data_model/items.dart';
+import 'package:search_github/service/api_client.dart';
 import 'package:search_github/service/github_api_client.dart';
 
 class SearchPageLogic {
@@ -37,5 +38,17 @@ class SearchPageLogic {
       default:
         throw Exception('Http status ${response.statusCode} unknown error.');
     }
+  }
+
+  Future<List<Item>?> getSearchApiRequest(
+      {required String searchWords, required int resultsPerPage}) async {
+    // API Request
+    final apiClient = ApiClientImpl(baseUrl: 'https://api.github.com');
+    final responseBody = await apiClient.get(
+        '/search/repositories?q=$searchWords&order=desc&per_page=$resultsPerPage&page=1');
+
+    final jsonData = json.decode(responseBody);
+    final items = Items.fromJson(jsonData);
+    return items.items;
   }
 }

@@ -10,13 +10,13 @@ void main() {
     await tester.pumpWidget(
       MaterialApp(
           home: RepositoryDetailItem(
-        // ownerIconUrl: path,
+        ownerIconUrl: path,
         repositoryName: "flutter/flutter",
-        stargazersCount: '1234567',
+        stargazersCount: 1234567,
         projectLanguage: 'Dart',
-        watchersCount: '1234567',
-        forksCount: '1234567',
-        openIssuesCount: '1234567',
+        watchersCount: 1234567,
+        forksCount: 1234567,
+        openIssuesCount: 1234567,
       )),
     );
 

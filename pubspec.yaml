@@ -37,10 +37,6 @@ dependencies:
   # http
   http: ^0.13.5
 
-  # for resposible design
-  # responsive_framework: ^0.2.0
-  # sizer: ^2.0.15
-
   # for multilingual support
   l10n_flutter: ^1.0.6
   
@@ -62,6 +58,9 @@ dev_dependencies:
 
   # network image test
   network_image_mock: ^2.1.1
+
+  # mock web server for Unit test
+  mock_web_server: ^5.0.0-nullsafety.1
 
 
 flutter:
