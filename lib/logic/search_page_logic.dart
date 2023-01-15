@@ -7,11 +7,9 @@ import 'package:search_github/service/github_api_client.dart';
 class SearchPageLogic {
   Future<List<Item>?> searchRequest(
       {required String searchWords, required int resultsPerPage}) async {
-    print("===========================");
     // API Request
     final response = await GithubApiClient()
         .queryRequest(searchWords: searchWords, resultsPerPage: resultsPerPage);
-    print("===========================");
 
     switch (response.statusCode) {
       case 200:
@@ -32,8 +30,12 @@ class SearchPageLogic {
         throw Exception('404 Not Found');
       case 500:
         throw Exception('500 Internal Server Error');
+      case 510:
+        throw Exception('510 Not Extended');
+      case 511:
+        throw Exception('511 Network Authentication Required');
       default:
-        throw Exception('API Erorr: $searchWords');
+        throw Exception('Http status ${response.statusCode} unknown error.');
     }
   }
 }
