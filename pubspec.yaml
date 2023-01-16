@@ -64,6 +64,10 @@ dev_dependencies:
 
   # DI for mock test
   get_it: ^7.2.0
+  
+  # Integration test
+  integration_test:
+    sdk: flutter
 
 
 flutter:

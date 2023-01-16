@@ -63,7 +63,7 @@ class _SearchPageViewState extends ConsumerState<SearchPageView> {
                 onTap: () async {},
                 autofocus: false,
                 textInputAction: TextInputAction.done,
-                key: const Key('secondTextField'),
+                key: const Key('searchTextField'),
                 style: const TextStyle(color: Colors.black),
                 decoration: InputDecoration(
                   contentPadding: const EdgeInsets.symmetric(vertical: 8),
@@ -170,6 +170,7 @@ class _SearchPageViewState extends ConsumerState<SearchPageView> {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: GestureDetector(
+          key: const Key('search_item'),
           onTap: () =>
               {_vm.onTap(itemData: itemData), debugPrint("onTap title")},
           child: Column(
