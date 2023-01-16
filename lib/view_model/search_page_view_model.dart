@@ -4,7 +4,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:search_github/data_model/item.dart';
 import 'package:search_github/logic/search_page_logic.dart';
 import 'package:search_github/router/router.dart';
-import 'package:search_github/widget/search_result_list_item.dart';
 
 class SearchPageViewModel {
   // Get "ref" from View Page
@@ -54,14 +53,14 @@ class SearchPageViewModel {
   }
 }
 
-final _searchLogicProvider =
+final searchPageLogicProvider =
     StateProvider<SearchPageLogic>((ref) => SearchPageLogic());
 final searchWordProvider = StateProvider<String?>((ref) => null);
 
 AutoDisposeFutureProviderFamily<List<Item>, String> apiFamilyProvider =
     FutureProvider.autoDispose
         .family<List<Item>, String>((ref, searchWords) async {
-  final logic = ref.watch(_searchLogicProvider);
+  final logic = ref.watch(searchPageLogicProvider);
   print("001 -------------------------");
   final result = await logic.getSearchApiRequest(
     searchWords: searchWords,

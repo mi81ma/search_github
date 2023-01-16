@@ -29,7 +29,7 @@ dependencies:
   flutter_screenutil: ^5.6.0
 
   # JSON
-  json_serializable: ^6.5.4
+  json_serializable: ^6.3.1
   
   # Multisize Simulator
   device_preview: ^1.1.0
@@ -42,7 +42,6 @@ dependencies:
   
   # for l10n
   intl: ^0.17.0
-
     
 dev_dependencies:
   flutter_test:
@@ -61,6 +60,10 @@ dev_dependencies:
 
   # mock web server for Unit test
   mock_web_server: ^5.0.0-nullsafety.1
+  mockito: ^5.3.2
+
+  # DI for mock test
+  get_it: ^7.2.0
 
 
 flutter:

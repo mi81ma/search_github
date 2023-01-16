@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:search_github/data_model/item.dart';
 import 'package:search_github/view_model/search_page_view_model.dart';
-import 'package:search_github/widget/size_config.dart';
+import 'package:search_github/utils/size_config.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 class SearchPageView extends ConsumerStatefulWidget {
@@ -95,24 +95,22 @@ class _SearchPageViewState extends ConsumerState<SearchPageView> {
                         child: SizedBox(
                           height: SizeConfig.safeBlockVertical! * 100 - 180,
                           width: SizeConfig.safeBlockHorizontal! * 100 - 24,
-                          child: Expanded(
-                            child: Scrollbar(
-                              child: ListView(children: [
-                                for (final oneData in data)
-                                  if (oneData.fullName != null &&
-                                      oneData.fullName != "")
-                                    searchItem(
-                                      fullName: oneData.fullName ?? "",
-                                      description: oneData.description ?? "",
-                                      stargazersCount:
-                                          oneData.stargazersCount != null
-                                              ? "${oneData.stargazersCount}"
-                                              : "",
-                                      language: oneData.language ?? "",
-                                      itemData: oneData,
-                                    )
-                              ]),
-                            ),
+                          child: Scrollbar(
+                            child: ListView(children: [
+                              for (final oneData in data)
+                                if (oneData.fullName != null &&
+                                    oneData.fullName != "")
+                                  searchItem(
+                                    fullName: oneData.fullName ?? "",
+                                    description: oneData.description ?? "",
+                                    stargazersCount:
+                                        oneData.stargazersCount != null
+                                            ? "${oneData.stargazersCount}"
+                                            : "",
+                                    language: oneData.language ?? "",
+                                    itemData: oneData,
+                                  )
+                            ]),
                           ),
                         ),
                       ),

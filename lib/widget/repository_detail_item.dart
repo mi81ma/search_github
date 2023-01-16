@@ -1,6 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:search_github/widget/size_config.dart';
+import 'package:search_github/utils/size_config.dart';
 
 class RepositoryDetailItem extends StatelessWidget {
   const RepositoryDetailItem({

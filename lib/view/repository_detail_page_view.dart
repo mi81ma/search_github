@@ -12,7 +12,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:search_github/view_model/repository_detail_page_view_model.dart';
 import 'package:search_github/widget/repository_detail_item.dart';
-import 'package:search_github/widget/size_config.dart';
+import 'package:search_github/utils/size_config.dart';
 
 class RepositoryDetailPageView extends ConsumerStatefulWidget {
   const RepositoryDetailPageView({

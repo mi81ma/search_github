@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:http/http.dart' as http;
 
 abstract class ApiClient {
@@ -79,3 +80,6 @@ class ApiClientImpl implements ApiClient {
     }
   }
 }
+
+final apiClientProvider = StateProvider.family<ApiClientImpl, String>(
+    (ref, url) => ApiClientImpl(baseUrl: url));
