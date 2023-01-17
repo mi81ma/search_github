@@ -68,7 +68,7 @@ flutter drive --driver=test_driver/integration_test.dart --target=integration_te
 ```
 
 
-## iOSビルドファイルを作成して、Xcodeで開く。
+## iOS向けビルドファイルを作成する
 前提して、Xcode(Version 14.2)が必要です。
 1. ターミナルでプロジェクトルートにディレクトリを移動し、次のコマンドを実行して、iOSビルドファイルを作成します。
 ```bash
@@ -77,7 +77,7 @@ flutter build ios
 2. Visual Studio Codeでプロジェクトを開いている場合は、File ExplorerのiOSフォルダを右クリックし、"Open in Xcode"の項目を選択することで、Xcodeが起動します。
 
 
-## Android向けのAPKファイルを作成する。
+## Android向けのAPKファイルを作成する
 1. ターミナルでプロジェクトルートにディレクトリを移動し、次のコマンドを実行することで、APKファイルが作成されます。
 ```bash
 flutter build apk --debug
