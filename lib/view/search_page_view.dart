@@ -32,132 +32,134 @@ class _SearchPageViewState extends ConsumerState<SearchPageView> {
     final searchWord = ref.watch(searchWordProvider);
 
     return Scaffold(
+        resizeToAvoidBottomInset: false,
         body: SafeArea(
-      child: GestureDetector(
-        onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-        behavior: HitTestBehavior.opaque,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 24),
-          child: Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
+          child: GestureDetector(
+            onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+            behavior: HitTestBehavior.opaque,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 24),
+              child: Column(
                 children: [
-                  SizedBox(
-                    child: Center(
-                      child: Text(
-                        L10n.of(context)!.title,
-                        style: const TextStyle(
-                            fontSize: 34,
-                            fontWeight: FontWeight.w600,
-                            fontFamily: 'Roboto'),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 10),
-              TextField(
-                onEditingComplete: _vm.onEditingComplete,
-                controller: _vm.searchWordEditingController,
-                onTap: () async {},
-                autofocus: false,
-                textInputAction: TextInputAction.done,
-                key: const Key('searchTextField'),
-                style: const TextStyle(color: Colors.black),
-                decoration: InputDecoration(
-                  contentPadding: const EdgeInsets.symmetric(vertical: 8),
-                  hintText: L10n.of(context) != null
-                      ? L10n.of(context)!.search
-                      : "Search Github",
-                  prefixIcon: const Icon(
-                    Icons.search,
-                    color: Colors.black38,
-                  ),
-                  suffixIcon: IconButton(
-                    onPressed: () => _vm.clear(), //リセット処理
-                    icon: const Icon(Icons.clear),
-                  ),
-                  filled: true,
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8),
-                    borderSide: const BorderSide(color: Colors.blue, width: 1),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 16),
-              if (searchWord != null && searchWord != "") ...[
-                ref.watch(apiFamilyProvider(searchWord)).when(
-                      data: (data) => RefreshIndicator(
-                        onRefresh: () async {
-                          ref.refresh(apiFamilyProvider(searchWord));
-                        },
-                        child: SizedBox(
-                          height: SizeConfig.safeBlockVertical! * 100 - 180,
-                          width: SizeConfig.safeBlockHorizontal! * 100 - 24,
-                          child: Scrollbar(
-                            child: ListView(children: [
-                              for (final oneData in data)
-                                if (oneData.fullName != null &&
-                                    oneData.fullName != "")
-                                  searchItem(
-                                    fullName: oneData.fullName ?? "",
-                                    description: oneData.description ?? "",
-                                    stargazersCount:
-                                        oneData.stargazersCount != null
-                                            ? "${oneData.stargazersCount}"
-                                            : "",
-                                    language: oneData.language ?? "",
-                                    itemData: oneData,
-                                  )
-                            ]),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      SizedBox(
+                        child: Center(
+                          child: Text(
+                            L10n.of(context)!.title,
+                            style: const TextStyle(
+                                fontSize: 34,
+                                fontWeight: FontWeight.w600,
+                                fontFamily: 'Roboto'),
                           ),
                         ),
                       ),
-                      error: (error, stack) {
-                        return Column(
-                          children: [
-                            const SizedBox(
-                              height: 30,
-                            ),
-                            Text('Error: $error'),
-                            const SizedBox(
-                              height: 30,
-                            ),
-                            OutlinedButton(
-                              onPressed: () async {
-                                ref.refresh(apiFamilyProvider(searchWord));
-                              },
-                              style: OutlinedButton.styleFrom(
-                                  side: const BorderSide(
-                                      color: Colors.blue, width: 2),
-                                  minimumSize: const Size(200, 40)),
-                              child: const Text(
-                                'Refresh Data',
-                                style:
-                                    TextStyle(color: Colors.blue, fontSize: 20),
+                    ],
+                  ),
+                  const SizedBox(height: 10),
+                  TextField(
+                    onEditingComplete: _vm.onEditingComplete,
+                    controller: _vm.searchWordEditingController,
+                    onTap: () async {},
+                    autofocus: false,
+                    textInputAction: TextInputAction.done,
+                    key: const Key('searchTextField'),
+                    style: const TextStyle(color: Colors.black),
+                    decoration: InputDecoration(
+                      contentPadding: const EdgeInsets.symmetric(vertical: 8),
+                      hintText: L10n.of(context) != null
+                          ? L10n.of(context)!.search
+                          : "Search Github",
+                      prefixIcon: const Icon(
+                        Icons.search,
+                        color: Colors.black38,
+                      ),
+                      suffixIcon: IconButton(
+                        onPressed: () => _vm.clear(), //リセット処理
+                        icon: const Icon(Icons.clear),
+                      ),
+                      filled: true,
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8),
+                        borderSide:
+                            const BorderSide(color: Colors.blue, width: 1),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  if (searchWord != null && searchWord != "") ...[
+                    ref.watch(apiFamilyProvider(searchWord)).when(
+                          data: (data) => RefreshIndicator(
+                            onRefresh: () async {
+                              ref.refresh(apiFamilyProvider(searchWord));
+                            },
+                            child: SizedBox(
+                              height: SizeConfig.safeBlockVertical! * 100 - 180,
+                              width: SizeConfig.safeBlockHorizontal! * 100 - 24,
+                              child: Scrollbar(
+                                child: ListView(children: [
+                                  for (final oneData in data)
+                                    if (oneData.fullName != null &&
+                                        oneData.fullName != "")
+                                      searchItem(
+                                        fullName: oneData.fullName ?? "",
+                                        description: oneData.description ?? "",
+                                        stargazersCount:
+                                            oneData.stargazersCount != null
+                                                ? "${oneData.stargazersCount}"
+                                                : "",
+                                        language: oneData.language ?? "",
+                                        itemData: oneData,
+                                      )
+                                ]),
                               ),
                             ),
-                          ],
-                        );
-                      },
-                      loading: () => Center(
-                        child: Column(
-                          children: [
-                            Container(
-                              height: 20,
+                          ),
+                          error: (error, stack) {
+                            return Column(
+                              children: [
+                                const SizedBox(
+                                  height: 30,
+                                ),
+                                Text('Error: $error'),
+                                const SizedBox(
+                                  height: 30,
+                                ),
+                                OutlinedButton(
+                                  onPressed: () async {
+                                    ref.refresh(apiFamilyProvider(searchWord));
+                                  },
+                                  style: OutlinedButton.styleFrom(
+                                      side: const BorderSide(
+                                          color: Colors.blue, width: 2),
+                                      minimumSize: const Size(200, 40)),
+                                  child: const Text(
+                                    'Refresh Data',
+                                    style: TextStyle(
+                                        color: Colors.blue, fontSize: 20),
+                                  ),
+                                ),
+                              ],
+                            );
+                          },
+                          loading: () => Center(
+                            child: Column(
+                              children: [
+                                Container(
+                                  height: 20,
+                                ),
+                                const CircularProgressIndicator(),
+                              ],
                             ),
-                            const CircularProgressIndicator(),
-                          ],
-                        ),
-                      ),
-                    )
-              ],
-            ],
+                          ),
+                        )
+                  ],
+                ],
+              ),
+            ),
           ),
-        ),
-      ),
-    ));
+        ));
   }
 
   Padding searchItem({
