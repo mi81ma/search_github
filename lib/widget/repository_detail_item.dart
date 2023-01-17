@@ -55,7 +55,7 @@ class RepositoryDetailItem extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SizedBox(
-              width: SizeConfig.screenWidth! - 64,
+              width: SizeConfig.safeBlockHorizontal! * 100 - 150,
               child: Center(
                 child: AutoSizeText(
                   repositoryName ?? "",
