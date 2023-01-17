@@ -45,7 +45,7 @@ class RepositoryDetailItem extends StatelessWidget {
                       key: Key('owner_icon'),
                       width: 128,
                       height: 128,
-                      image: AssetImage('assets/images/dymo_labels-02.png'),
+                      image: AssetImage('assets/images/no_image.png'),
                       // image: NetworkImage(ownerIconUrl!),
                     ))),
         const SizedBox(height: 8),
