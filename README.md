@@ -87,5 +87,5 @@ flutter build apk --debug
 
 
 ## 困った点 & 改善点
-- `mockito: 5.3.2` を使ってRest APIのモックを作り、テストしたかったが上手くかけませんでした。
+- `mockito: 5.3.2` を使ってRest APIのモックを作り、テストしたかったのですが上手く書くことができませんでした。
 - Image WidgetのWidget testに失敗しました。参考になる書き方を探しております。
