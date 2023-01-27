@@ -42,15 +42,15 @@ dependencies:
   
   # for l10n
   intl: ^0.17.0
+
+  # freezed
+  freezed: ^2.2.1
+  freezed_annotation:
     
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.0
-
-  # freezed
-  freezed: ^2.2.1
-  freezed_annotation:
 
   # build runner for freezed & l10n
   build_runner: ^2.3.2
